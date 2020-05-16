@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ErrorMessagesDelegate {
+public protocol ErrorMessagesDelegate {
     func errorMessageByCode(_ code: ValidationError.Code, for valueName: String) -> String?
 }

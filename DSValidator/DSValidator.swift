@@ -8,11 +8,17 @@
 
 import Foundation
 
-typealias Rules = () -> [ValueValidator]
+// TODO: think of better naming
+public func makeRule(name: String? = nil,
+                      defaultMessagesProvder: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
+    return DSValueValidator(name: name ?? "Value", defaultMessagesProvder: defaultMessagesProvder)
+}
 
-final class DSValidator {
+public typealias Rules = () -> [ValueValidator]
 
-    static func validate(object: Any,
+public final class DSValidator {
+
+    public static func validate(object: Any,
                          tillFirstError: Bool = false,
                          delegate: ErrorMessagesDelegate? = nil,
                          scenario: String? = nil,
@@ -55,7 +61,7 @@ final class DSValidator {
         return errors
     }
 
-    static func validate(value: Any?,
+    public static func validate(value: Any?,
                          tillFirstError: Bool = false,
                          delegate: ErrorMessagesDelegate? = nil,
                          scenario: String? = nil,

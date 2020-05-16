@@ -8,14 +8,8 @@
 
 import Foundation
 
-private struct Names {
-    static let includes = "Includes"
-    static let excludes = "Excludes"
-    static let includedIn = "IncludedIn"
-    static let excludedFrom = "ExcludedFrom"
-}
 
-protocol CollectionValueValidator {
+public protocol CollectionValueValidator {
     @discardableResult func includes<T: Equatable>(_ element: T) -> ValueValidator
     @discardableResult func excludes<T: Equatable>(_ element: T) -> ValueValidator
     @discardableResult func includedIn(_ collection: DSCollection) -> ValueValidator
@@ -77,22 +71,9 @@ extension ValueValidator {
     }
 }
 
-protocol DSCollection {
-    func includes(_ object: Any?) -> Bool
-}
-
-extension Array: DSCollection where Array.Element: Equatable {
-    func includes(_ object: Any?) -> Bool {
-        guard let object = object as? Element else { return false }
-        let result = contains(object)
-        return result
-    }
-}
-
-extension Set: DSCollection {
-    func includes(_ object: Any?) -> Bool {
-        guard let object = object as? Element else { return false }
-        let result = contains(object)
-        return result
-    }
+private struct Names {
+    static let includes = "Includes"
+    static let excludes = "Excludes"
+    static let includedIn = "IncludedIn"
+    static let excludedFrom = "ExcludedFrom"
 }

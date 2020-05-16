@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias ValidationBlock = (Any?) -> ValidationError.Code?
+public typealias ValidationBlock = (Any?) -> ValidationError.Code?
 
-protocol Rule {
+public protocol Rule {
     var name: String { get }
     var validationBlock: ValidationBlock { get }
 }

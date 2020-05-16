@@ -9,46 +9,8 @@
 import UIKit
 import Foundation
 
-enum Syntax {
-    case email
-    case name
-    case http
-    case file
-    case webSocket
-    case IPv4
-    case IPv6
-    case domain
-    case geoCoordinate
 
-    func code() -> ValidationError.Code {
-        switch self {
-        case .email: return .notEmail
-        case .name: return .notName
-        case .http: return .notHTTP
-        case .file: return .notFile
-        case .webSocket: return .notWebSocket
-        case .IPv4: return .notIPv4
-        case .IPv6: return .notIPv6
-        case .domain: return .notDomain
-        case .geoCoordinate: return .notGeoCoordinate
-        }
-    }
-}
-
-private struct Names {
-    static let syntaxEmail = "Syntax email"
-    static let syntaxName = "Syntax name"
-    static let syntaHTTP = "Syntax HTTP"
-    static let syntaFile = "Syntax HTTP"
-    static let syntaxWebSocket = "Syntax HTTP"
-    static let syntaxIPv4 = "Syntax IPv4"
-    static let syntaxIPv6 = "Syntax IPv6"
-    static let syntaxRegexp = "Syntax Regexp"
-    static let syntaxDomain = "Syntax Domain"
-    static let syntaxGeoCoordinate = "Syntax Geo Coordinate"
-}
-
-protocol SyntaxValueValidator {
+public protocol SyntaxValueValidator {
     @discardableResult func syntax(_ syntax: Syntax) -> ValueValidator
     @discardableResult func regex(_ pattern: String, options: NSRegularExpression.Options) -> ValueValidator
 
@@ -102,4 +64,17 @@ extension ValueValidator {
     @discardableResult func wrongRegexpMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notMatchToRegexp)
     }
+}
+
+private struct Names {
+    static let syntaxEmail = "Syntax email"
+    static let syntaxName = "Syntax name"
+    static let syntaHTTP = "Syntax HTTP"
+    static let syntaFile = "Syntax HTTP"
+    static let syntaxWebSocket = "Syntax HTTP"
+    static let syntaxIPv4 = "Syntax IPv4"
+    static let syntaxIPv6 = "Syntax IPv6"
+    static let syntaxRegexp = "Syntax Regexp"
+    static let syntaxDomain = "Syntax Domain"
+    static let syntaxGeoCoordinate = "Syntax Geo Coordinate"
 }

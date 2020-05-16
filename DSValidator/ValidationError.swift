@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct ValidationError: Error {
-    enum Code {
+public struct ValidationError: Error {
+    public enum Code {
 
         // common
         case required
@@ -89,11 +89,11 @@ struct ValidationError: Error {
 
 extension ValidationError: LocalizedError {
     private static let DefaultLocalizedMessage = "Validation Error"
-    var errorDescription: String? { message ?? ValidationError.DefaultLocalizedMessage }
+    public var errorDescription: String? { message ?? ValidationError.DefaultLocalizedMessage }
 }
 
 extension ValidationError: Equatable {
-    static func == (lhs: ValidationError, rhs: ValidationError) -> Bool {
+    public static func == (lhs: ValidationError, rhs: ValidationError) -> Bool {
         guard lhs.message == rhs.message else {
             return false
         }

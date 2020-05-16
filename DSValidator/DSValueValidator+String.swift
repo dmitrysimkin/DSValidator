@@ -8,23 +8,8 @@
 
 import Foundation
 
-private struct Names {
-    static let lengthFrom = "Length from"
-    static let lengthUpTo = "Length up to"
 
-    static let lengthExact = "Length exact"
-    static let lengthFromTo = "Lenght from to"
-
-    static let match = "Match"
-    static let differ = "Differ"
-
-    static let decimal = "Decimal"
-
-    static let hasEmoji = "Has emoji"
-    static let hasNoEmoji = "Has emoji"
-}
-
-protocol StringValueValidator {
+public protocol StringValueValidator {
     // including
     @discardableResult func length(from length: Int) -> ValueValidator
     @discardableResult func lengthNotFromMessage(_ message: String) -> ValueValidator
@@ -159,4 +144,20 @@ extension ValueValidator {
     func hasEmojiMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .hasEmoji)
     }
+}
+
+private struct Names {
+    static let lengthFrom = "Length from"
+    static let lengthUpTo = "Length up to"
+
+    static let lengthExact = "Length exact"
+    static let lengthFromTo = "Lenght from to"
+
+    static let match = "Match"
+    static let differ = "Differ"
+
+    static let decimal = "Decimal"
+
+    static let hasEmoji = "Has emoji"
+    static let hasNoEmoji = "Has emoji"
 }

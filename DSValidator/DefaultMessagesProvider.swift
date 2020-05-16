@@ -8,15 +8,15 @@
 
 import Foundation
 
-class DSDefaultMessagesProvider: ErrorMessagesDelegate {
+public class DSDefaultMessagesProvider: ErrorMessagesDelegate {
 
     var messages = [ValidationError.Code: String]()
 
-    init() {
+    public init() {
         setup()
     }
 
-    func errorMessageByCode(_ code: ValidationError.Code, for valueName: String) -> String? {
+    public func errorMessageByCode(_ code: ValidationError.Code, for valueName: String) -> String? {
         guard var message = messages[code] else { return nil }
         message = "\(valueName) \(message)"
         return message

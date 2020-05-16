@@ -8,18 +8,8 @@
 
 import Foundation
 
-private struct Names {
-    static let earlierThen = "Earlier Than"
-    static let laterThen = "Later Than"
 
-    static let earlierOrEqualTo = "Earlier or equal to"
-    static let laterOrEqualTo = "Later or equal to"
-
-    static let betweenDates = "Between dates"
-    static let betweenDatesNotIncluding = "Between dates not including"
-}
-
-protocol DateValueValidator {
+public protocol DateValueValidator {
     @discardableResult func earlierThan(_ date: DSDate) -> ValueValidator
     @discardableResult func notEarlierThenErrorMessage(_ message: String) -> ValueValidator
 
@@ -117,17 +107,13 @@ extension ValueValidator {
     }
 }
 
-protocol DSDate {
-    func value() -> Date
-}
+private struct Names {
+    static let earlierThen = "Earlier Than"
+    static let laterThen = "Later Than"
 
-extension Date: DSDate {
-    func value() -> Date { return self }
-}
+    static let earlierOrEqualTo = "Earlier or equal to"
+    static let laterOrEqualTo = "Later or equal to"
 
-extension TimeInterval: DSDate {
-    func value() -> Date {
-        let date = Date(timeIntervalSince1970: self)
-        return date
-    }
+    static let betweenDates = "Between dates"
+    static let betweenDatesNotIncluding = "Between dates not including"
 }

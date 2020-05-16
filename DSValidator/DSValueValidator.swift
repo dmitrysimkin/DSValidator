@@ -10,11 +10,6 @@ import Foundation
 
 let DSValidatorDefaultOrder = 500
 
-private struct Names {
-    static let Required = "Required"
-    static let NotEmpty = "NotEmpty"
-}
-
 final class DSValueValidator: ValueValidator {
 
     var name: String
@@ -177,4 +172,9 @@ extension DSValueValidator {
         let defaultMessage = defaultMessagesProvder.errorMessageByCode(code, for: name)
         return ValidationError(code, message: defaultMessage)
     }
+}
+
+private struct Names {
+    static let Required = "Required"
+    static let NotEmpty = "NotEmpty"
 }

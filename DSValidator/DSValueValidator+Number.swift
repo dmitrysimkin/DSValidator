@@ -8,17 +8,8 @@
 
 import Foundation
 
-private struct Names {
-    static let greaterThan = "Greater than"
-    static let greaterThanOrEqual = "Greater than or equal"
-    static let smallerThan = "Smaller than"
-    static let smallerThanOrEqual = "Smaller than or equal"
-    static let equal = "Equal"
-    static let `true` = "True"
-    static let `false` = "False"
-}
 
-protocol NumberValueValidator {
+public protocol NumberValueValidator {
     @discardableResult func greaterThan(_ limit: DSNumber) -> ValueValidator
     @discardableResult func greaterThanOrEqual(_ limit: DSNumber) -> ValueValidator
     @discardableResult func smallerThan(_ limit: DSNumber) -> ValueValidator
@@ -127,4 +118,14 @@ extension ValueValidator {
     @discardableResult func notFalseMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notFalse)
     }
+}
+
+private struct Names {
+    static let greaterThan = "Greater than"
+    static let greaterThanOrEqual = "Greater than or equal"
+    static let smallerThan = "Smaller than"
+    static let smallerThanOrEqual = "Smaller than or equal"
+    static let equal = "Equal"
+    static let `true` = "True"
+    static let `false` = "False"
 }

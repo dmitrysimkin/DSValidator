@@ -55,7 +55,7 @@ extension Date: ExpressibleByStringLiteral {
 }
 
 extension String: DSDate {
-    func value() -> Date {
+    public func value() -> Date {
         return Date(stringLiteral: self)
     }
 }

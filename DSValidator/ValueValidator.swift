@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias Scenario = String
-typealias ValidationCondition = () -> Bool
+public typealias Scenario = String
+public typealias ValidationCondition = () -> Bool
 
-protocol ValueValidator:  AnyObject, CustomValidation, DateValueValidator, StringValueValidator, SyntaxValueValidator, NumberValueValidator, CollectionValueValidator {
+public protocol ValueValidator:  AnyObject, CustomValidation, DateValueValidator, StringValueValidator, SyntaxValueValidator, NumberValueValidator, CollectionValueValidator {
     var name: String { get }
     var delegate: ErrorMessagesDelegate? { get set }
     var rules: [Rule] { get }
@@ -29,7 +29,7 @@ protocol ValueValidator:  AnyObject, CustomValidation, DateValueValidator, Strin
     func validateAll(value: Any?, scenario: Scenario?) -> [ValidationError]
 }
 
-protocol CustomValidation {
+public protocol CustomValidation {
     @discardableResult func addRule(with name: String, block: @escaping ValidationBlock) -> ValueValidator
     @discardableResult func setErrorMessage(_ message: String, for code: ValidationError.Code) -> ValueValidator
 }

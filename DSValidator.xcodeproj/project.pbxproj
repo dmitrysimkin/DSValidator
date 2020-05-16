@@ -29,6 +29,22 @@
 		126FBE4B24015117006391CC /* DSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 126FBE3D24015117006391CC /* DSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		126FBE55240154DE006391CC /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126FBE54240154DE006391CC /* Rule.swift */; };
 		126FBE56240154DE006391CC /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126FBE54240154DE006391CC /* Rule.swift */; };
+		127CA17C24709BD600375036 /* DSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17B24709BD600375036 /* DSDate.swift */; };
+		127CA17E24709BFD00375036 /* DSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17D24709BFD00375036 /* DSDate+Extensions.swift */; };
+		127CA18024709C3F00375036 /* DSAnyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17F24709C3F00375036 /* DSAnyNumber.swift */; };
+		127CA18224709C6000375036 /* DSNumber+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18124709C6000375036 /* DSNumber+Extensions.swift */; };
+		127CA18424709CD200375036 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18324709CD200375036 /* Syntax.swift */; };
+		127CA18624709D1C00375036 /* Syntax+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18524709D1C00375036 /* Syntax+Extensions.swift */; };
+		127CA18724709D4D00375036 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18324709CD200375036 /* Syntax.swift */; };
+		127CA18A24709DF300375036 /* DSCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18924709DF300375036 /* DSCollection.swift */; };
+		127CA18C24709E0F00375036 /* DSCollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */; };
+		127CA18D24709E8000375036 /* DSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17B24709BD600375036 /* DSDate.swift */; };
+		127CA18E24709E8B00375036 /* DSCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18924709DF300375036 /* DSCollection.swift */; };
+		127CA18F24709EE800375036 /* DSNumber+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18124709C6000375036 /* DSNumber+Extensions.swift */; };
+		127CA19024709EF600375036 /* DSCollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */; };
+		127CA19124709F0400375036 /* DSAnyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17F24709C3F00375036 /* DSAnyNumber.swift */; };
+		127CA19224709F1000375036 /* DSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17D24709BFD00375036 /* DSDate+Extensions.swift */; };
+		127CA19324709F3000375036 /* Syntax+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18524709D1C00375036 /* Syntax+Extensions.swift */; };
 		129393A5240987F20002ABF0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A4240987F20002ABF0 /* Utils.swift */; };
 		129393A724099E370002ABF0 /* MockErrorMessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A624099E370002ABF0 /* MockErrorMessagesDelegate.swift */; };
 		129393A9240A739F0002ABF0 /* ValueValidatorMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A8240A739F0002ABF0 /* ValueValidatorMessagingTests.swift */; };
@@ -95,6 +111,14 @@
 		126FBE4824015117006391CC /* RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		126FBE4A24015117006391CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		126FBE54240154DE006391CC /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		127CA17B24709BD600375036 /* DSDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDate.swift; sourceTree = "<group>"; };
+		127CA17D24709BFD00375036 /* DSDate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSDate+Extensions.swift"; sourceTree = "<group>"; };
+		127CA17F24709C3F00375036 /* DSAnyNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAnyNumber.swift; sourceTree = "<group>"; };
+		127CA18124709C6000375036 /* DSNumber+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSNumber+Extensions.swift"; sourceTree = "<group>"; };
+		127CA18324709CD200375036 /* Syntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syntax.swift; sourceTree = "<group>"; };
+		127CA18524709D1C00375036 /* Syntax+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Extensions.swift"; sourceTree = "<group>"; };
+		127CA18924709DF300375036 /* DSCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCollection.swift; sourceTree = "<group>"; };
+		127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSCollection+Extensions.swift"; sourceTree = "<group>"; };
 		129393A4240987F20002ABF0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		129393A624099E370002ABF0 /* MockErrorMessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorMessagesDelegate.swift; sourceTree = "<group>"; };
 		129393A8240A739F0002ABF0 /* ValueValidatorMessagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueValidatorMessagingTests.swift; sourceTree = "<group>"; };
@@ -177,13 +201,21 @@
 				126612562405578B0092E1B0 /* ValueValidator+SyntaxSugar.swift */,
 				12661253240556F10092E1B0 /* DSRule.swift */,
 				12F39F49245DDF3B003958EE /* DSNumber.swift */,
+				127CA18124709C6000375036 /* DSNumber+Extensions.swift */,
+				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
+				127CA17B24709BD600375036 /* DSDate.swift */,
+				127CA17D24709BFD00375036 /* DSDate+Extensions.swift */,
 				12F6406124253D7A00A395EB /* DSValidator.swift */,
 				12661251240556D50092E1B0 /* DSValueValidator.swift */,
 				129393AD240B23950002ABF0 /* DSValueValidator+Date.swift */,
 				12B0728A241D5F990017E488 /* DSValueValidator+String.swift */,
 				12CC5F382430B7C80034F946 /* DSValueValidator+Syntax.swift */,
+				127CA18324709CD200375036 /* Syntax.swift */,
+				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
 				12BCB0F2245DB39000601ABA /* DSValueValidator+Number.swift */,
 				12F39F4C245ED6B8003958EE /* DSValueValidator+Collection.swift */,
+				127CA18924709DF300375036 /* DSCollection.swift */,
+				127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */,
 				122E48F12402B98700498538 /* ErrorMessagesDelegate.swift */,
 				12FE1FDC2416984000EB1A4F /* DefaultMessagesProvider.swift */,
 				12FE1FD62416712800EB1A4F /* EmptyInspectable.swift */,
@@ -333,18 +365,26 @@
 				12F640642425410F00A395EB /* Reflection.swift in Sources */,
 				12FE1FD72416712800EB1A4F /* EmptyInspectable.swift in Sources */,
 				12661254240556F10092E1B0 /* DSRule.swift in Sources */,
+				127CA18424709CD200375036 /* Syntax.swift in Sources */,
 				129393AE240B23950002ABF0 /* DSValueValidator+Date.swift in Sources */,
 				12F6406B24267FD400A395EB /* Constants.swift in Sources */,
+				127CA17C24709BD600375036 /* DSDate.swift in Sources */,
 				12F39F4D245ED6B9003958EE /* DSValueValidator+Collection.swift in Sources */,
 				12CC5F392430B7C80034F946 /* DSValueValidator+Syntax.swift in Sources */,
 				12F6406224253D7A00A395EB /* DSValidator.swift in Sources */,
+				127CA18624709D1C00375036 /* Syntax+Extensions.swift in Sources */,
 				12BCB0F3245DB39000601ABA /* DSValueValidator+Number.swift in Sources */,
 				12B0728B241D5F990017E488 /* DSValueValidator+String.swift in Sources */,
+				127CA18C24709E0F00375036 /* DSCollection+Extensions.swift in Sources */,
 				122E48EC2402B1BF00498538 /* ValidationError.swift in Sources */,
 				122E48EF2402B77600498538 /* ValueValidator.swift in Sources */,
+				127CA18A24709DF300375036 /* DSCollection.swift in Sources */,
 				12FE1FDD2416984000EB1A4F /* DefaultMessagesProvider.swift in Sources */,
 				126612572405578B0092E1B0 /* ValueValidator+SyntaxSugar.swift in Sources */,
 				122E48F22402B98700498538 /* ErrorMessagesDelegate.swift in Sources */,
+				127CA17E24709BFD00375036 /* DSDate+Extensions.swift in Sources */,
+				127CA18224709C6000375036 /* DSNumber+Extensions.swift in Sources */,
+				127CA18024709C3F00375036 /* DSAnyNumber.swift in Sources */,
 				12661252240556D50092E1B0 /* DSValueValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,19 +399,25 @@
 				12F6406E2427B1F200A395EB /* MockValueValidator.swift in Sources */,
 				12F6406C2426840D00A395EB /* Constants.swift in Sources */,
 				126FBE4924015117006391CC /* RuleTests.swift in Sources */,
+				127CA18724709D4D00375036 /* Syntax.swift in Sources */,
 				12F39F4B245DE18A003958EE /* DSNumber.swift in Sources */,
+				127CA18F24709EE800375036 /* DSNumber+Extensions.swift in Sources */,
 				126FBE56240154DE006391CC /* Rule.swift in Sources */,
 				12F640662425426A00A395EB /* ValidatorTests.swift in Sources */,
 				129393AF240B23950002ABF0 /* DSValueValidator+Date.swift in Sources */,
 				1266125024054EF90092E1B0 /* TestRule.swift in Sources */,
+				127CA19124709F0400375036 /* DSAnyNumber.swift in Sources */,
 				122E48F32402B98700498538 /* ErrorMessagesDelegate.swift in Sources */,
 				121959092455BF4B00789BE4 /* DSValueValidator+Syntax.swift in Sources */,
 				129393A9240A739F0002ABF0 /* ValueValidatorMessagingTests.swift in Sources */,
 				1266125A240558F50092E1B0 /* ValueValidator+SyntaxSugar.swift in Sources */,
 				12F39F50245EDA9F003958EE /* ValueValidatorCollectionTests.swift in Sources */,
+				127CA19324709F3000375036 /* Syntax+Extensions.swift in Sources */,
+				127CA18D24709E8000375036 /* DSDate.swift in Sources */,
 				129393A724099E370002ABF0 /* MockErrorMessagesDelegate.swift in Sources */,
 				122E48FC2402CE4600498538 /* MockValidationError.swift in Sources */,
 				12F640692425443200A395EB /* Reflection.swift in Sources */,
+				127CA19024709EF600375036 /* DSCollection+Extensions.swift in Sources */,
 				12FE1FDE2416984000EB1A4F /* DefaultMessagesProvider.swift in Sources */,
 				122E48F92402C50500498538 /* ValueValidatorTests.swift in Sources */,
 				12EABE6F2413DA5F00673346 /* DSValueValidator.swift in Sources */,
@@ -381,12 +427,14 @@
 				121959082455BE3300789BE4 /* ValueValidatorSyntaxTests.swift in Sources */,
 				12BCB0F5245DD01800601ABA /* ValueValidatorNumberTests.swift in Sources */,
 				122E48F62402C35D00498538 /* ValueValidator+Extensions.swift in Sources */,
+				127CA18E24709E8B00375036 /* DSCollection.swift in Sources */,
 				12B0728E241D67C40017E488 /* DSValueValidator+String.swift in Sources */,
 				122E48ED2402B35C00498538 /* ValidationError.swift in Sources */,
 				12F6405C2425196700A395EB /* ValidationErrorTests.swift in Sources */,
 				129393A5240987F20002ABF0 /* Utils.swift in Sources */,
 				12B0728D241D663B0017E488 /* ValueValidatorStringTests.swift in Sources */,
 				12F39F4E245ED6C2003958EE /* DSValueValidator+Collection.swift in Sources */,
+				127CA19224709F1000375036 /* DSDate+Extensions.swift in Sources */,
 				12BCB0F6245DD28B00601ABA /* DSValueValidator+Number.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
