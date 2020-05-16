@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        let errors = DSValidator.validate(value: "Test", rule: makeRule().notEmpty().required().length(from: 5, to: 8))
+        print(errors)
     }
 }
 
