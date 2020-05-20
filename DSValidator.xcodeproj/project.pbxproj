@@ -56,6 +56,7 @@
 		12B0728E241D67C40017E488 /* DSValueValidator+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0728A241D5F990017E488 /* DSValueValidator+String.swift */; };
 		12B3B6B6247560420032100C /* DSValidator.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 12B3B6B5247560420032100C /* DSValidator.podspec */; };
 		12B3B6BA247560E50032100C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 12B3B6B8247560E50032100C /* README.md */; };
+		12B3B6D2247579B30032100C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCB0EE245C40B200601ABA /* String+Extension.swift */; };
 		12BCB0EF245C40B300601ABA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCB0EE245C40B200601ABA /* String+Extension.swift */; };
 		12BCB0F3245DB39000601ABA /* DSValueValidator+Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCB0F2245DB39000601ABA /* DSValueValidator+Number.swift */; };
 		12BCB0F5245DD01800601ABA /* ValueValidatorNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCB0F4245DD01800601ABA /* ValueValidatorNumberTests.swift */; };
@@ -201,33 +202,14 @@
 			isa = PBXGroup;
 			children = (
 				126FBE3D24015117006391CC /* DSValidator.h */,
+				12F6406124253D7A00A395EB /* DSValidator.swift */,
 				126FBE54240154DE006391CC /* Rule.swift */,
 				122E48EB2402B1BF00498538 /* ValidationError.swift */,
-				122E48EE2402B77600498538 /* ValueValidator.swift */,
-				126612562405578B0092E1B0 /* ValueValidator+SyntaxSugar.swift */,
-				12661253240556F10092E1B0 /* DSRule.swift */,
-				12F39F49245DDF3B003958EE /* DSNumber.swift */,
-				127CA18124709C6000375036 /* DSNumber+Extensions.swift */,
-				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
-				127CA17B24709BD600375036 /* DSDate.swift */,
-				127CA17D24709BFD00375036 /* DSDate+Extensions.swift */,
-				12F6406124253D7A00A395EB /* DSValidator.swift */,
-				12661251240556D50092E1B0 /* DSValueValidator.swift */,
-				129393AD240B23950002ABF0 /* DSValueValidator+Date.swift */,
-				12B0728A241D5F990017E488 /* DSValueValidator+String.swift */,
-				12CC5F382430B7C80034F946 /* DSValueValidator+Syntax.swift */,
-				127CA18324709CD200375036 /* Syntax.swift */,
-				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
-				12BCB0F2245DB39000601ABA /* DSValueValidator+Number.swift */,
-				12F39F4C245ED6B8003958EE /* DSValueValidator+Collection.swift */,
-				127CA18924709DF300375036 /* DSCollection.swift */,
-				127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */,
 				122E48F12402B98700498538 /* ErrorMessagesDelegate.swift */,
 				12FE1FDC2416984000EB1A4F /* DefaultMessagesProvider.swift */,
-				12FE1FD62416712800EB1A4F /* EmptyInspectable.swift */,
-				12F640632425410F00A395EB /* Reflection.swift */,
-				12BCB0EE245C40B200601ABA /* String+Extension.swift */,
-				12F6406A24267FD400A395EB /* Constants.swift */,
+				12B3B6CF247579250032100C /* ValueValidators */,
+				12B3B6CE247578DD0032100C /* Models */,
+				12B3B6CB247578290032100C /* Internal */,
 				126FBE3E24015117006391CC /* Info.plist */,
 			);
 			path = DSValidator;
@@ -269,6 +251,81 @@
 				126FBE3C24015117006391CC /* DSValidator */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		12B3B6CB247578290032100C /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				12F640632425410F00A395EB /* Reflection.swift */,
+				12FE1FD62416712800EB1A4F /* EmptyInspectable.swift */,
+				12BCB0EE245C40B200601ABA /* String+Extension.swift */,
+				12F6406A24267FD400A395EB /* Constants.swift */,
+				12661253240556F10092E1B0 /* DSRule.swift */,
+				12661251240556D50092E1B0 /* DSValueValidator.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		12B3B6CC247578BF0032100C /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				12F39F49245DDF3B003958EE /* DSNumber.swift */,
+				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
+				127CA18124709C6000375036 /* DSNumber+Extensions.swift */,
+			);
+			path = Numbers;
+			sourceTree = "<group>";
+		};
+		12B3B6CD247578D30032100C /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				127CA17B24709BD600375036 /* DSDate.swift */,
+				127CA17D24709BFD00375036 /* DSDate+Extensions.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		12B3B6CE247578DD0032100C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				12B3B6D02475794D0032100C /* Syntax */,
+				12B3B6CC247578BF0032100C /* Numbers */,
+				12B3B6CD247578D30032100C /* Date */,
+				12B3B6D12475796C0032100C /* Collection */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		12B3B6CF247579250032100C /* ValueValidators */ = {
+			isa = PBXGroup;
+			children = (
+				122E48EE2402B77600498538 /* ValueValidator.swift */,
+				126612562405578B0092E1B0 /* ValueValidator+SyntaxSugar.swift */,
+				129393AD240B23950002ABF0 /* DSValueValidator+Date.swift */,
+				12B0728A241D5F990017E488 /* DSValueValidator+String.swift */,
+				12CC5F382430B7C80034F946 /* DSValueValidator+Syntax.swift */,
+				12BCB0F2245DB39000601ABA /* DSValueValidator+Number.swift */,
+				12F39F4C245ED6B8003958EE /* DSValueValidator+Collection.swift */,
+			);
+			path = ValueValidators;
+			sourceTree = "<group>";
+		};
+		12B3B6D02475794D0032100C /* Syntax */ = {
+			isa = PBXGroup;
+			children = (
+				127CA18324709CD200375036 /* Syntax.swift */,
+				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
+			);
+			path = Syntax;
+			sourceTree = "<group>";
+		};
+		12B3B6D12475796C0032100C /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				127CA18924709DF300375036 /* DSCollection.swift */,
+				127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +486,7 @@
 				126FBE56240154DE006391CC /* Rule.swift in Sources */,
 				12F640662425426A00A395EB /* ValidatorTests.swift in Sources */,
 				129393AF240B23950002ABF0 /* DSValueValidator+Date.swift in Sources */,
+				12B3B6D2247579B30032100C /* String+Extension.swift in Sources */,
 				1266125024054EF90092E1B0 /* TestRule.swift in Sources */,
 				127CA19124709F0400375036 /* DSAnyNumber.swift in Sources */,
 				122E48F32402B98700498538 /* ErrorMessagesDelegate.swift in Sources */,
