@@ -7,7 +7,7 @@
 //
 
 /// String syntax validation enum
-public enum Syntax {
+public enum DSSyntax {
     /// Email
     case email
     /// Person's first name

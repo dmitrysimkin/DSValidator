@@ -1,12 +1,12 @@
 //
-//  Syntax+Extensions.swift
+//  DSSyntax+Extensions.swift
 //  DSValidator
 //
 //  Created by Dzmitry Simkin on 5/17/20.
 //  Copyright © 2020 Dzmitry Simkin. All rights reserved.
 //
 
-extension Syntax {
+extension DSSyntax {
     func code() -> ValidationError.Code {
         switch self {
         case .email: return .notEmail

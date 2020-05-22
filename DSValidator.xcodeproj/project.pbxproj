@@ -33,9 +33,9 @@
 		127CA17E24709BFD00375036 /* DSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17D24709BFD00375036 /* DSDate+Extensions.swift */; };
 		127CA18024709C3F00375036 /* DSAnyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17F24709C3F00375036 /* DSAnyNumber.swift */; };
 		127CA18224709C6000375036 /* DSNumber+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18124709C6000375036 /* DSNumber+Extensions.swift */; };
-		127CA18424709CD200375036 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18324709CD200375036 /* Syntax.swift */; };
+		127CA18424709CD200375036 /* DSSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18324709CD200375036 /* DSSyntax.swift */; };
 		127CA18624709D1C00375036 /* Syntax+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18524709D1C00375036 /* Syntax+Extensions.swift */; };
-		127CA18724709D4D00375036 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18324709CD200375036 /* Syntax.swift */; };
+		127CA18724709D4D00375036 /* DSSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18324709CD200375036 /* DSSyntax.swift */; };
 		127CA18A24709DF300375036 /* DSCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18924709DF300375036 /* DSCollection.swift */; };
 		127CA18C24709E0F00375036 /* DSCollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */; };
 		127CA18D24709E8000375036 /* DSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17B24709BD600375036 /* DSDate.swift */; };
@@ -118,7 +118,7 @@
 		127CA17D24709BFD00375036 /* DSDate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSDate+Extensions.swift"; sourceTree = "<group>"; };
 		127CA17F24709C3F00375036 /* DSAnyNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAnyNumber.swift; sourceTree = "<group>"; };
 		127CA18124709C6000375036 /* DSNumber+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSNumber+Extensions.swift"; sourceTree = "<group>"; };
-		127CA18324709CD200375036 /* Syntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syntax.swift; sourceTree = "<group>"; };
+		127CA18324709CD200375036 /* DSSyntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSyntax.swift; sourceTree = "<group>"; };
 		127CA18524709D1C00375036 /* Syntax+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Extensions.swift"; sourceTree = "<group>"; };
 		127CA18924709DF300375036 /* DSCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCollection.swift; sourceTree = "<group>"; };
 		127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSCollection+Extensions.swift"; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 		12B3B6CE247578DD0032100C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				127CA18324709CD200375036 /* Syntax.swift */,
+				127CA18324709CD200375036 /* DSSyntax.swift */,
 				12F39F49245DDF3B003958EE /* DSNumber.swift */,
 				127CA17B24709BD600375036 /* DSDate.swift */,
 				127CA18924709DF300375036 /* DSCollection.swift */,
@@ -422,7 +422,7 @@
 				12F640642425410F00A395EB /* Reflection.swift in Sources */,
 				12FE1FD72416712800EB1A4F /* EmptyInspectable.swift in Sources */,
 				12661254240556F10092E1B0 /* DSRule.swift in Sources */,
-				127CA18424709CD200375036 /* Syntax.swift in Sources */,
+				127CA18424709CD200375036 /* DSSyntax.swift in Sources */,
 				129393AE240B23950002ABF0 /* ValueValidator+Date.swift in Sources */,
 				12F6406B24267FD400A395EB /* Constants.swift in Sources */,
 				127CA17C24709BD600375036 /* DSDate.swift in Sources */,
@@ -456,7 +456,7 @@
 				12F6406E2427B1F200A395EB /* MockValueValidator.swift in Sources */,
 				12F6406C2426840D00A395EB /* Constants.swift in Sources */,
 				126FBE4924015117006391CC /* RuleTests.swift in Sources */,
-				127CA18724709D4D00375036 /* Syntax.swift in Sources */,
+				127CA18724709D4D00375036 /* DSSyntax.swift in Sources */,
 				12F39F4B245DE18A003958EE /* DSNumber.swift in Sources */,
 				127CA18F24709EE800375036 /* DSNumber+Extensions.swift in Sources */,
 				126FBE56240154DE006391CC /* Rule.swift in Sources */,

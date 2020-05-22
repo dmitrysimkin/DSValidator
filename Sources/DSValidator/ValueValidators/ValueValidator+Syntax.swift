@@ -11,15 +11,15 @@ import Foundation
 
 
 public protocol SyntaxValueValidator {
-    @discardableResult func syntax(_ syntax: Syntax) -> ValueValidator
+    @discardableResult func syntax(_ syntax: DSSyntax) -> ValueValidator
     @discardableResult func regex(_ pattern: String, options: NSRegularExpression.Options) -> ValueValidator
 
-    @discardableResult func wrongSyntaxMessage(_ syntax: Syntax, message: String) -> ValueValidator
+    @discardableResult func wrongSyntaxMessage(_ syntax: DSSyntax, message: String) -> ValueValidator
     @discardableResult func wrongRegexpMessage(_ message: String) -> ValueValidator
 }
 
 extension ValueValidator {
-    @discardableResult func syntax(_ syntax: Syntax) -> ValueValidator {
+    @discardableResult func syntax(_ syntax: DSSyntax) -> ValueValidator {
         switch syntax {
         case .email:    addStringRule(with: Names.syntaxEmail) { $0.isEmail ? nil : .notEmail }
         case .name:     addStringRule(with: Names.syntaxName) { $0.isName ? nil : .notName }
@@ -57,7 +57,7 @@ extension ValueValidator {
         }
     }
 
-    @discardableResult func wrongSyntaxMessage(_ syntax: Syntax, message: String) -> ValueValidator {
+    @discardableResult func wrongSyntaxMessage(_ syntax: DSSyntax, message: String) -> ValueValidator {
         setErrorMessage(message, for: syntax.code())
     }
 
