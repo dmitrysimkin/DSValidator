@@ -167,6 +167,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1259C2D824783F94000151EE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				127CA17D24709BFD00375036 /* DSDate+Extensions.swift */,
+				12BCB0EE245C40B200601ABA /* String+Extension.swift */,
+				127CA18124709C6000375036 /* DSNumber+Extensions.swift */,
+				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
+				127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		12661255240557460092E1B0 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,41 +270,22 @@
 			children = (
 				12F640632425410F00A395EB /* Reflection.swift */,
 				12FE1FD62416712800EB1A4F /* EmptyInspectable.swift */,
-				12BCB0EE245C40B200601ABA /* String+Extension.swift */,
 				12F6406A24267FD400A395EB /* Constants.swift */,
 				12661253240556F10092E1B0 /* DSRule.swift */,
 				12661251240556D50092E1B0 /* DSValueValidator.swift */,
-				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
+				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
+				1259C2D824783F94000151EE /* Extensions */,
 			);
 			path = Internal;
-			sourceTree = "<group>";
-		};
-		12B3B6CC247578BF0032100C /* Numbers */ = {
-			isa = PBXGroup;
-			children = (
-				12F39F49245DDF3B003958EE /* DSNumber.swift */,
-				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
-				127CA18124709C6000375036 /* DSNumber+Extensions.swift */,
-			);
-			path = Numbers;
-			sourceTree = "<group>";
-		};
-		12B3B6CD247578D30032100C /* Date */ = {
-			isa = PBXGroup;
-			children = (
-				127CA17B24709BD600375036 /* DSDate.swift */,
-				127CA17D24709BFD00375036 /* DSDate+Extensions.swift */,
-			);
-			path = Date;
 			sourceTree = "<group>";
 		};
 		12B3B6CE247578DD0032100C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				12B3B6D02475794D0032100C /* Syntax */,
-				12B3B6CC247578BF0032100C /* Numbers */,
-				12B3B6CD247578D30032100C /* Date */,
-				12B3B6D12475796C0032100C /* Collection */,
+				127CA18324709CD200375036 /* Syntax.swift */,
+				12F39F49245DDF3B003958EE /* DSNumber.swift */,
+				127CA17B24709BD600375036 /* DSDate.swift */,
+				127CA18924709DF300375036 /* DSCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,23 +302,6 @@
 				12F39F4C245ED6B8003958EE /* DSValueValidator+Collection.swift */,
 			);
 			path = ValueValidators;
-			sourceTree = "<group>";
-		};
-		12B3B6D02475794D0032100C /* Syntax */ = {
-			isa = PBXGroup;
-			children = (
-				127CA18324709CD200375036 /* Syntax.swift */,
-			);
-			path = Syntax;
-			sourceTree = "<group>";
-		};
-		12B3B6D12475796C0032100C /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				127CA18924709DF300375036 /* DSCollection.swift */,
-				127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */,
-			);
-			path = Collection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

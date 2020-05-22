@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Protocol to simplify date validation interface
+/// by wrapping up Date and TimeInterval
 public protocol DSDate {
     func value() -> Date
 }

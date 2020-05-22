@@ -6,6 +6,8 @@
 //  Copyright © 2020 Dzmitry Simkin. All rights reserved.
 //
 
+/// Protocol to simplify colletions validation interface
+/// by wrapping up Array and Set
 public protocol DSCollection {
     func includes(_ object: Any?) -> Bool
 }
