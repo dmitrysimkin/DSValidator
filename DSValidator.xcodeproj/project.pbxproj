@@ -262,6 +262,7 @@
 				12F6406A24267FD400A395EB /* Constants.swift */,
 				12661253240556F10092E1B0 /* DSRule.swift */,
 				12661251240556D50092E1B0 /* DSValueValidator.swift */,
+				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -314,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				127CA18324709CD200375036 /* Syntax.swift */,
-				127CA18524709D1C00375036 /* Syntax+Extensions.swift */,
 			);
 			path = Syntax;
 			sourceTree = "<group>";
