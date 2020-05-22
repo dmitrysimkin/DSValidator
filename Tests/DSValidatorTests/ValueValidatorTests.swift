@@ -69,19 +69,19 @@ class ValueValidatorTests: XCTestCase {
     }
 
     func testAddingOneRules() {
-        XCTAssertEqual(validator.rules.count, 0)
+        XCTAssertEqual(validator.validations.count, 0)
         validator.emptyTestRule()
-        XCTAssertEqual(validator.rules.count, 1)
-        XCTAssertEqual(validator.rules.first?.name, DefaultValueValidatorName)
+        XCTAssertEqual(validator.validations.count, 1)
+        XCTAssertEqual(validator.validations.first?.name, DefaultValueValidatorName)
     }
 
     func testAddingTwoRules() {
-        XCTAssertEqual(validator.rules.count, 0)
+        XCTAssertEqual(validator.validations.count, 0)
         validator.emptyTestRule()
-        XCTAssertEqual(validator.rules.count, 1)
-        XCTAssertEqual(validator.rules.first?.name, DefaultValueValidatorName)
+        XCTAssertEqual(validator.validations.count, 1)
+        XCTAssertEqual(validator.validations.first?.name, DefaultValueValidatorName)
         validator.emptyTestRule()
-        XCTAssertEqual(validator.rules.count, 2)
+        XCTAssertEqual(validator.validations.count, 2)
     }
 
     func testRequiredFailedWhenNil() {
@@ -232,8 +232,8 @@ class ValueValidatorTests: XCTestCase {
             return .custom(0)
         }
 
-        validator.addRule(with: "Rule1", block: block1)
-        validator.addRule(with: "Rule2", block: block2)
+        validator.addValidation(named: "Rule1", block: block1)
+        validator.addValidation(named: "Rule2", block: block2)
 
         let error = validator.validate(value: "")
         XCTAssertEqual(error, ValidationError(.required))
@@ -251,8 +251,8 @@ class ValueValidatorTests: XCTestCase {
             expectation2.fulfill()
             return .empty
         }
-        validator.addRule(with: "Rule1", block: block1)
-        validator.addRule(with: "Rule2", block: block2)
+        validator.addValidation(named: "Rule1", block: block1)
+        validator.addValidation(named: "Rule2", block: block2)
 
         let errors = validator.validateAll(value: 0)
         XCTAssertEqual(errors.count, 2)
@@ -280,8 +280,8 @@ class ValueValidatorTests: XCTestCase {
             return .empty
         }
         let whenConditionCalledExpectation = XCTestExpectation()
-        validator.addRule(with: "Rule1", block: block1)
-        validator.addRule(with: "Rule2", block: block2)
+        validator.addValidation(named: "Rule1", block: block1)
+        validator.addValidation(named: "Rule2", block: block2)
         validator.when(condition: {
             whenConditionCalledExpectation.fulfill()
             return false
@@ -304,8 +304,8 @@ class ValueValidatorTests: XCTestCase {
             return .empty
         }
         let whenConditionCalledExpectation = XCTestExpectation()
-        validator.addRule(with: "Rule1", block: block1)
-        validator.addRule(with: "Rule2", block: block2)
+        validator.addValidation(named: "Rule1", block: block1)
+        validator.addValidation(named: "Rule2", block: block2)
         validator.when(condition: {
             whenConditionCalledExpectation.fulfill()
             return true
@@ -320,7 +320,7 @@ class ValueValidatorTests: XCTestCase {
 
     func testRuleValidatedIfScenarioIsEmpty() {
         let expectation = XCTestExpectation()
-        validator.addRule(with: "Rule") { (_) -> ValidationError.Code? in
+        validator.addValidation(named: "Rule") { (_) -> ValidationError.Code? in
             expectation.fulfill()
             return .custom(3)
         }
@@ -333,7 +333,7 @@ class ValueValidatorTests: XCTestCase {
 
     func testRuleValidatedIfScenarioSetButRunWithoutScenario() {
         let expectation = XCTestExpectation()
-        validator.addRule(with: "Rule") { (_) -> ValidationError.Code? in
+        validator.addValidation(named: "Rule") { (_) -> ValidationError.Code? in
             expectation.fulfill()
             return .custom(3)
         }
@@ -345,7 +345,7 @@ class ValueValidatorTests: XCTestCase {
 
     func testRuleValidatedIfScenarioSetToOneFromScenarios() {
         let expectation = XCTestExpectation()
-        validator.addRule(with: "Rule") { (_) -> ValidationError.Code? in
+        validator.addValidation(named: "Rule") { (_) -> ValidationError.Code? in
             expectation.fulfill()
             return .custom(3)
         }
@@ -357,7 +357,7 @@ class ValueValidatorTests: XCTestCase {
 
     func testRuleNotValidatedIfScenarioSetToOneNotInScenarios() {
         let expectation = XCTestExpectation(isInverted: true)
-        validator.addRule(with: "Rule") { (_) -> ValidationError.Code? in
+        validator.addValidation(named: "Rule") { (_) -> ValidationError.Code? in
             expectation.fulfill()
             return .custom(3)
         }
@@ -371,7 +371,7 @@ class ValueValidatorTests: XCTestCase {
 
     func testRuleNotValidatedIfScenarioSetToOneFromScenariosButConditionIsFalse() {
         let expectation = XCTestExpectation(isInverted: true)
-        validator.addRule(with: "Rule") { (_) -> ValidationError.Code? in
+        validator.addValidation(named: "Rule") { (_) -> ValidationError.Code? in
             expectation.fulfill()
             return .custom(3)
         }

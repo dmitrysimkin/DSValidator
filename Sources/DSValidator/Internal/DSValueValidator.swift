@@ -13,7 +13,7 @@ let DSValidatorDefaultOrder = 500
 final class DSValueValidator: ValueValidator {
 
     var name: String
-    private(set) var rules = [Rule]()
+    private(set) var validations = [Validation]()
 
     var delegate: ErrorMessagesDelegate?
     var defaultMessagesProvder: ErrorMessagesDelegate
@@ -29,11 +29,11 @@ final class DSValueValidator: ValueValidator {
     @discardableResult
     func required() -> ValueValidator {
         isRequired = true
-        let rule = DSRule(name: Names.Required) { (value) -> ValidationError.Code? in
+        let validation = DSValidation(name: Names.Required) { (value) -> ValidationError.Code? in
             guard let _ = value else { return .required }
             return nil
         }
-        rules.append(rule)
+        validations.append(validation)
         return self
     }
 
@@ -41,14 +41,14 @@ final class DSValueValidator: ValueValidator {
     @discardableResult
     func notEmpty() -> ValueValidator {
         shouldAllowEmpty = false
-        let rule = DSRule(name: Names.NotEmpty) { [weak self] (value) -> ValidationError.Code? in
+        let validation = DSValidation(name: Names.NotEmpty) { [weak self] (value) -> ValidationError.Code? in
             guard let self = self else { return nil }
             if (self.isRequired && value == nil) { return nil } // skip if required but nil
             guard let value = value else { return nil } // skip if not required and nil
             guard let isEmpty = self.isEmpty(value) else { return .wrongType } // not applicable to be empty, e.g. Int
             return isEmpty ? .empty : nil
         }
-        rules.append(rule)
+        validations.append(validation)
         return self
     }
 
@@ -86,8 +86,8 @@ final class DSValueValidator: ValueValidator {
         guard shouldValidate(condition: condition, scenario: scenario, scenarios: scenarios) else {
             return nil
         }
-        for rule in rules {
-            if let errorCode = rule.validationBlock(value) {
+        for validation in validations {
+            if let errorCode = validation.block(value) {
                 let error = buildError(with: errorCode, valueName: self.name)
                 return error
             }
@@ -100,8 +100,8 @@ final class DSValueValidator: ValueValidator {
         guard shouldValidate(condition: condition, scenario: scenario, scenarios: scenarios) else {
             return errors
         }
-        for rule in rules {
-            if let errorCode = rule.validationBlock(value) {
+        for validation in validations {
+            if let errorCode = validation.block(value) {
                 let error = buildError(with: errorCode, valueName: self.name)
                 errors.append(error)
             }
@@ -112,8 +112,8 @@ final class DSValueValidator: ValueValidator {
 
 extension DSValueValidator: CustomValidation {
     @discardableResult
-    func addRule(with name: String, block: @escaping (Any?) -> ValidationError.Code?) -> ValueValidator {
-        let rule = DSRule(name: name) { [weak self] (value) -> ValidationError.Code? in
+    func addValidation(named: String, block: @escaping (Any?) -> ValidationError.Code?) -> ValueValidator {
+        let validation = DSValidation(name: name) { [weak self] (value) -> ValidationError.Code? in
             guard let self = self else { return nil }
             // skip if requred, because required validation already should return error
             if self.isRequired, value == nil { return nil }
@@ -124,7 +124,7 @@ extension DSValueValidator: CustomValidation {
             }
             return block(value)
         }
-        self.rules.append(rule)
+        self.validations.append(validation)
         return self
     }
 

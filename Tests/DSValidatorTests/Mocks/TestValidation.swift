@@ -1,5 +1,5 @@
 //
-//  TestRule.swift
+//  TestValidation.swift
 //  DSValidatorTests
 //
 //  Created by Dzmitry Simkin on 2/25/20.
@@ -8,13 +8,12 @@
 
 import Foundation
 
-final class TestRule: Rule {
+final class TestValidation: Validation {
     var name: String
+    var block: ValidationBlock
 
-    var validationBlock: ValidationBlock
-
-    init(name: String, validationBlock: @escaping ValidationBlock) {
+    init(name: String, block: @escaping ValidationBlock) {
         self.name = name
-        self.validationBlock = validationBlock
+        self.block = block
     }
 }

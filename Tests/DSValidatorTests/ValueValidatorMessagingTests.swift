@@ -125,7 +125,7 @@ class ValueValidatorMessagingTests: XCTestCase {
 
     func testProperValuesPassedToDelegate() {
         let validator = DSValueValidator(name: DefaultValueValidatorName)
-        validator.addRule(with: "Rule1", block: { _ in return .custom(0) })
+        validator.addValidation(named: "Rule1", block: { _ in return .custom(0) })
         let delegate = MockErrorMessagesDelegate()
         var expectation = XCTestExpectation()
         delegate.errorMessageByCodeHook = { (code, name) in
@@ -140,7 +140,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         let _ = validator.validate(value: 3.3)
         wait(for: [expectation], timeout: 0)
 
-        validator.addRule(with: "Rule2", block: { _ in return .custom(0) })
+        validator.addValidation(named: "Rule2", block: { _ in return .custom(0) })
         expectation = XCTestExpectation()
         expectation.expectedFulfillmentCount = 2
         delegate.errorMessageByCodeHook = { (code, name) in

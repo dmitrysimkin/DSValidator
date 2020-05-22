@@ -14,8 +14,8 @@ class RuleTests: XCTestCase {
     func testInit() {
         let block: ValidationBlock = { _ in return .empty }
         let name = "Test name"
-        let rule = TestRule(name: name, validationBlock: block)
-        XCTAssertEqual(rule.name, name)
-        XCTAssertTrue(rule.validationBlock(nil) == block(""))
+        let validation = TestValidation(name: name, block: block)
+        XCTAssertEqual(validation.name, name)
+        XCTAssertTrue(validation.block(nil) == block(""))
     }
 }

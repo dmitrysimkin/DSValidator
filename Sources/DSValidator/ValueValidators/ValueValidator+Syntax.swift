@@ -51,7 +51,7 @@ extension ValueValidator {
 
     @discardableResult
     func addStringRule(with name: String, block: @escaping (String) -> ValidationError.Code?) -> ValueValidator {
-        addRule(with: name) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: name) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return block(value)
         }

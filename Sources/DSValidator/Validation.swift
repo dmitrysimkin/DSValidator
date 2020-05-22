@@ -1,5 +1,5 @@
 //
-//  Rule.swift
+//  Validation.swift
 //  DSValidator
 //
 //  Created by Dzmitry Simkin on 2/22/20.
@@ -10,7 +10,7 @@ import Foundation
 
 public typealias ValidationBlock = (Any?) -> ValidationError.Code?
 
-public protocol Rule {
+public protocol Validation {
     var name: String { get }
-    var validationBlock: ValidationBlock { get }
+    var block: ValidationBlock { get }
 }

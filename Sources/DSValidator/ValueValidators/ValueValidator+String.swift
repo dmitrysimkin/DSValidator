@@ -48,7 +48,7 @@ extension ValueValidator {
     }
 
     @discardableResult func length(from length: Int) -> ValueValidator {
-        addRule(with: Names.lengthFrom) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.lengthFrom) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return value.count >= length ? nil : .lengthNotFrom
         }
@@ -59,7 +59,7 @@ extension ValueValidator {
     }
 
     @discardableResult func length(upTo length: Int) -> ValueValidator {
-        addRule(with: Names.lengthUpTo) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.lengthUpTo) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return value.count <= length ? nil : .lengthNotUpTo
         }
@@ -70,7 +70,7 @@ extension ValueValidator {
     }
 
     @discardableResult func length(exact length: Int) -> ValueValidator {
-        addRule(with: Names.lengthExact) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.lengthExact) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return value.count == length ? nil : .lengthNotExact
         }
@@ -81,7 +81,7 @@ extension ValueValidator {
     }
 
     @discardableResult func length(from: Int, to: Int) -> ValueValidator {
-        addRule(with: Names.lengthFromTo) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.lengthFromTo) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             guard from <= to else { return .invalidArgument }
             return (value.count >= from && value.count <= to) ? nil : .lengthNotFromTo
@@ -93,7 +93,7 @@ extension ValueValidator {
     }
 
     @discardableResult func match(_ string: String) -> ValueValidator {
-        addRule(with: Names.match) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.match) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return string == value ? nil : .notMatch
         }
@@ -104,7 +104,7 @@ extension ValueValidator {
     }
 
     @discardableResult func differ(_ string: String) -> ValueValidator {
-        addRule(with: Names.differ) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.differ) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return string != value ? nil : .notDiffer
         }
@@ -115,7 +115,7 @@ extension ValueValidator {
     }
 
     @discardableResult func decimal() -> ValueValidator {
-        addRule(with: Names.decimal) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.decimal) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isString(from: value) else { return .wrongType }
             return value.isDecimal ? nil : .notDecimal
         }

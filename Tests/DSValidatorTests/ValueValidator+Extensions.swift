@@ -17,17 +17,17 @@ let underPG13ErrorCode = 1111
 extension ValueValidator {
     @discardableResult
     func emptyTestRule() -> ValueValidator {
-        addRule(with: DefaultValueValidatorName, block: { _ in return .empty })
+        addValidation(named: DefaultValueValidatorName, block: { _ in return .empty })
     }
 
     @discardableResult
     func fail(_ code: ValidationError.Code) -> ValueValidator {
-        addRule(with: DefaultValueValidatorName, block: { _ in return code })
+        addValidation(named: DefaultValueValidatorName, block: { _ in return code })
     }
 
     @discardableResult
     func pg13() -> ValueValidator {
-        addRule(with: "PG-13") { (age) -> ValidationError.Code? in
+        addValidation(named: "PG-13") { (age) -> ValidationError.Code? in
             guard let age = age as? Int else { return .wrongType }
             let above13 = age >= 13
             return above13 ? nil : .custom(underPG13ErrorCode)

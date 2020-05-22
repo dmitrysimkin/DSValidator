@@ -35,7 +35,7 @@ extension ValueValidator {
 
     // earlierThan
     @discardableResult func earlierThan(_ date: DSDate) -> ValueValidator {
-        addRule(with: Names.earlierThen) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.earlierThen) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isDate(from: value) else { return .wrongType }
             return value < date.value() ? nil : .notEarlierThan
         }
@@ -47,7 +47,7 @@ extension ValueValidator {
 
     // laterThan
     @discardableResult func laterThan(_ date: DSDate) -> ValueValidator {
-        addRule(with: Names.laterThen) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.laterThen) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isDate(from: value) else { return .wrongType }
             return value > date.value() ? nil : .notLaterThan
         }
@@ -59,7 +59,7 @@ extension ValueValidator {
 
     // earlierOrEqualTo
     @discardableResult func earlierOrEqualTo(_ date: DSDate) -> ValueValidator {
-        addRule(with: Names.earlierOrEqualTo) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.earlierOrEqualTo) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isDate(from: value) else { return .wrongType }
             return value <= date.value() ? nil : .notEarlierThanOrEqualTo
         }
@@ -71,7 +71,7 @@ extension ValueValidator {
 
     // laterOrEqualTo
     @discardableResult func laterOrEqualTo(_ date: DSDate) -> ValueValidator {
-        addRule(with: Names.laterOrEqualTo) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.laterOrEqualTo) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isDate(from: value) else { return .wrongType }
             return value >= date.value() ? nil : .notLaterThanOrEqualTo
         }
@@ -83,7 +83,7 @@ extension ValueValidator {
 
     // betweenDates
     @discardableResult func betweenDates(_ fromDate: DSDate, _ toDate: DSDate) -> ValueValidator {
-        addRule(with: Names.betweenDates) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.betweenDates) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isDate(from: value) else { return .wrongType }
             let fromDateValue = fromDate.value(), toDateValue = toDate.value()
             guard fromDateValue < toDateValue else { return .invalidArgument }
@@ -93,7 +93,7 @@ extension ValueValidator {
     }
 
     @discardableResult func betweenDatesNotIncluding(_ fromDate: DSDate, _ toDate: DSDate) -> ValueValidator {
-        addRule(with: Names.betweenDatesNotIncluding) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: Names.betweenDatesNotIncluding) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isDate(from: value) else { return .wrongType }
             let fromDateValue = fromDate.value(), toDateValue = toDate.value()
             guard fromDateValue < toDateValue else { return .invalidArgument }

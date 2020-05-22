@@ -203,7 +203,7 @@ class ObjectValidatorTests: XCTestCase {
         let model = TestClass(age: 23, date: "27.12.2003")
         let expectation = XCTestExpectation(isInverted: true)
         let errors = DSValidator.validate(object: model, tillFirstError: true) { () -> [ValueValidator] in
-            return [DS.rule(for: "AGE").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
+            return [DS.rule(for: "AGE").addValidation(named: "Test Rule", block: { (_) -> ValidationError.Code? in
                 expectation.fulfill()
                 return .custom(0)
             })]
@@ -218,10 +218,10 @@ class ObjectValidatorTests: XCTestCase {
         let expectation = XCTestExpectation(isInverted: true)
         let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
             return [
-                DS.rule(for: "AGE").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
+                DS.rule(for: "AGE").addValidation(named: "Test Rule", block: { (_) -> ValidationError.Code? in
                     expectation.fulfill()
                     return .custom(0)
-                }), DS.rule(for: "interval").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
+                }), DS.rule(for: "interval").addValidation(named: "Test Rule", block: { (_) -> ValidationError.Code? in
                     expectation.fulfill()
                     return .custom(1)
                 }), ]

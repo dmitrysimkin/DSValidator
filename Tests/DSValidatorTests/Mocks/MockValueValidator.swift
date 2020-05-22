@@ -11,7 +11,7 @@ import Foundation
 final class MockValueValidator: ValueValidator {
     var name: String
     var delegate: ErrorMessagesDelegate?
-    var rules = [Rule]()
+    var validations = [Validation]()
     var order: Int = 0
     var localizedName: String
 
@@ -47,6 +47,6 @@ final class MockValueValidator: ValueValidator {
         return validateAllHook?(value) ?? [ValidationError]()
     }
 
-    func addRule(with name: String, block: @escaping ValidationBlock) -> ValueValidator { fatalError() }
+    func addValidation(named: String, block: @escaping ValidationBlock) -> ValueValidator { fatalError() }
     func setErrorMessage(_ message: String, for code: ValidationError.Code) -> ValueValidator { fatalError() }
 }

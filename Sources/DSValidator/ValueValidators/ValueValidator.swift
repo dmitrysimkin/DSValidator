@@ -21,7 +21,7 @@ public protocol ValueValidator:  AnyObject,
         CollectionValueValidator {
     var name: String { get }
     var delegate: ErrorMessagesDelegate? { get set }
-    var rules: [Rule] { get }
+    var validations: [Validation] { get }
     var order: Int { get }
     var localizedName: String { get }
 
@@ -37,7 +37,7 @@ public protocol ValueValidator:  AnyObject,
 }
 
 public protocol CustomValidation {
-    @discardableResult func addRule(with name: String, block: @escaping ValidationBlock) -> ValueValidator
+    @discardableResult func addValidation(named: String, block: @escaping ValidationBlock) -> ValueValidator
     @discardableResult func setErrorMessage(_ message: String, for code: ValidationError.Code) -> ValueValidator
 }
 

@@ -25,7 +25,7 @@ public protocol CollectionValueValidator {
 extension ValueValidator {
 
     @discardableResult func includes<T: Equatable>(_ element: T) -> ValueValidator {
-        addRule(with: Names.includes) { (value) -> ValidationError.Code? in
+        addValidation(named: Names.includes) { (value) -> ValidationError.Code? in
             guard let anyCollection = value as? DSCollection else { return .wrongType }
             let result = anyCollection.includes(element)
             return result ? nil : .notIncludes
@@ -33,7 +33,7 @@ extension ValueValidator {
     }
 
     @discardableResult func excludes<T: Equatable>(_ element: T) -> ValueValidator {
-        addRule(with: Names.excludes) { (value) -> ValidationError.Code? in
+        addValidation(named: Names.excludes) { (value) -> ValidationError.Code? in
             guard let anyCollection = value as? DSCollection else { return .wrongType }
             let result = anyCollection.includes(element)
             return result == false ? nil : .notExcludes
@@ -41,14 +41,14 @@ extension ValueValidator {
     }
 
     @discardableResult func includedIn(_ collection: DSCollection) -> ValueValidator {
-        addRule(with: Names.includedIn) { (value) -> ValidationError.Code? in
+        addValidation(named: Names.includedIn) { (value) -> ValidationError.Code? in
             let result = collection.includes(value)
             return result ? nil : .notIncludedIn
         }
     }
 
     @discardableResult func excludedFrom(_ collection: DSCollection) -> ValueValidator {
-        addRule(with: Names.excludedFrom) { (value) -> ValidationError.Code? in
+        addValidation(named: Names.excludedFrom) { (value) -> ValidationError.Code? in
             let result = collection.includes(value)
             return result == false ? nil : .notExcludedFrom
         }

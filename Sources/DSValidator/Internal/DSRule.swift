@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class DSRule: Rule {
+final class DSValidation: Validation {
     let name: String
-    let validationBlock: ValidationBlock
+    let block: ValidationBlock
 
-    init(name: String, validationBlock: @escaping ValidationBlock) {
+    init(name: String, block: @escaping ValidationBlock) {
         self.name = name
-        self.validationBlock = validationBlock
+        self.block = block
     }
 }

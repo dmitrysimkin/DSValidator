@@ -71,21 +71,21 @@ extension ValueValidator {
 
     @discardableResult
     func addNumberRule(with name: String, block: @escaping (DSNumber) -> ValidationError.Code?) -> ValueValidator {
-        addRule(with: name) { [weak self] (value) -> ValidationError.Code? in
+        addValidation(named: name) { [weak self] (value) -> ValidationError.Code? in
             guard let value = self?.isNumber(from: value) else { return .wrongType }
             return block(value)
         }
     }
 
     @discardableResult func `true`() -> ValueValidator {
-        addRule(with: Names.true) { (value) -> ValidationError.Code? in
+        addValidation(named: Names.true) { (value) -> ValidationError.Code? in
             guard let value = value as? Bool else { return .wrongType }
             return value == true ? nil : .notTrue
         }
 
     }
     @discardableResult func `false`() -> ValueValidator {
-        addRule(with: Names.false) { (value) -> ValidationError.Code? in
+        addValidation(named: Names.false) { (value) -> ValidationError.Code? in
             guard let value = value as? Bool else { return .wrongType }
             return value == false ? nil : .notFalse
         }
