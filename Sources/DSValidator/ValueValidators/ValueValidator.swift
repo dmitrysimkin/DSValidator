@@ -11,7 +11,14 @@ import Foundation
 public typealias Scenario = String
 public typealias ValidationCondition = () -> Bool
 
-public protocol ValueValidator:  AnyObject, CustomValidation, DateValueValidator, StringValueValidator, SyntaxValueValidator, NumberValueValidator, CollectionValueValidator {
+
+public protocol ValueValidator:  AnyObject,
+        CustomValidation,
+        DateValueValidator,
+        StringValueValidator,
+        SyntaxValueValidator,
+        NumberValueValidator,
+        CollectionValueValidator {
     var name: String { get }
     var delegate: ErrorMessagesDelegate? { get set }
     var rules: [Rule] { get }

@@ -57,10 +57,10 @@ public final class DSValidator {
     }
 
     public static func validate(value: Any?,
-                         tillFirstError: Bool = false,
-                         delegate: ErrorMessagesDelegate? = nil,
-                         scenario: String? = nil,
-                         rule: ValueValidator) -> [ValidationError] {
+                                tillFirstError: Bool = false,
+                                delegate: ErrorMessagesDelegate? = nil,
+                                scenario: String? = nil,
+                                rule: ValueValidator) -> [ValidationError] {
 
         var errors: [ValidationError] = []
 
