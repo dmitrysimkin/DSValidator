@@ -79,6 +79,7 @@ class TestSubClassB: TestSubClassA {
     }
 }
 
+// TODO: capital and camel style model properties
 class ObjectValidatorTests: XCTestCase {
 
 
@@ -162,7 +163,7 @@ class ObjectValidatorTests: XCTestCase {
     func testValueNotFoundForStruct() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
         let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
-            return [makeRule(name: "notExistingName").required().notEmpty().length(from: 3, to: 20)]
+            return [DS.rule(for: "notExistingName").required().notEmpty().length(from: 3, to: 20)]
         }
         XCTAssertEqual(errors.count, 1)
         XCTAssertEqual(errors.first?.code, .valueNotFound)
@@ -190,9 +191,9 @@ class ObjectValidatorTests: XCTestCase {
     func testValueNotFoundAllErrorsReturnsMoreThenOneError() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
         let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
-            return [makeRule(name: "Username").required().notEmpty().length(from: 3, to: 20),
-                    makeRule(name: "pass").required(),
-                    makeRule(name: "age").notEmpty()]
+            return [DS.rule(for: "Username").required().notEmpty().length(from: 3, to: 20),
+                    DS.rule(for: "pass").required(),
+                    DS.rule(for: "age").notEmpty()]
         }
         XCTAssertEqual(errors.count, 3)
         XCTAssertEqual(errors.map({ $0.code }), [.valueNotFound, .valueNotFound, .valueNotFound])
@@ -202,7 +203,7 @@ class ObjectValidatorTests: XCTestCase {
         let model = TestClass(age: 23, date: "27.12.2003")
         let expectation = XCTestExpectation(isInverted: true)
         let errors = DSValidator.validate(object: model, tillFirstError: true) { () -> [ValueValidator] in
-            return [makeRule(name: "AGE").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
+            return [DS.rule(for: "AGE").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
                 expectation.fulfill()
                 return .custom(0)
             })]
@@ -217,10 +218,10 @@ class ObjectValidatorTests: XCTestCase {
         let expectation = XCTestExpectation(isInverted: true)
         let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
             return [
-                makeRule(name: "AGE").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
+                DS.rule(for: "AGE").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
                     expectation.fulfill()
                     return .custom(0)
-                }), makeRule(name: "interval").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
+                }), DS.rule(for: "interval").addRule(with: "Test Rule", block: { (_) -> ValidationError.Code? in
                     expectation.fulfill()
                     return .custom(1)
                 }), ]
@@ -313,7 +314,7 @@ class ObjectValidatorTests: XCTestCase {
             return "Message"
         }
 
-        let rule = makeRule(name: "age").required().greaterThan(21)
+        let rule = DS.rule(for: "age", defaultMessagesProvder: delegate).required().greaterThan(21)
         let errors = DSValidator.validate(object: model, tillFirstError: true, delegate: delegate) { [rule] }
         guard let error = errors.first else {
             XCTFail("Should be an error")
@@ -327,45 +328,45 @@ class ObjectValidatorTests: XCTestCase {
 class OneValueValidatorTests: XCTestCase {
 
     func testStringValue() {
-        let rule = makeRule().required().length(exact: 4)
+        let rule = DS.rule().required().length(exact: 4)
         let errors = DSValidator.validate(value: "Test", rule: rule)
         XCTAssertEqual(errors.count, 0)
     }
 
     func testDate() {
         let date: Date = "21.07.2012 11:59:59"
-        let rule = makeRule().required().earlierThan(Date())
+        let rule = DS.rule().required().earlierThan(Date())
         let errors = DSValidator.validate(value: date, rule: rule)
         XCTAssertEqual(errors.count, 0)
     }
 
     func testNumber() {
-        let rule = makeRule().required().greaterThan(18)
+        let rule = DS.rule().required().greaterThan(18)
         let errors = DSValidator.validate(value: 21, rule: rule)
         XCTAssertEqual(errors.count, 0)
     }
 
     func testNilNumber() {
-        let rule = makeRule().required().greaterThan(18)
+        let rule = DS.rule().required().greaterThan(18)
         let errors = DSValidator.validate(value: nil, rule: rule)
         XCTAssertEqual(errors.count, 1)
         XCTAssertEqual(errors.first?.code, .required)
     }
 
     func testCustomStruct() {
-        var rule = makeRule().required()
+        var rule = DS.rule().required()
         let value = UserCredentialsInput(username: "bla", password: "test", confirmPassword: nil)
         var errors = DSValidator.validate(value: value, rule: rule)
         XCTAssertEqual(errors.count, 0)
 
-        rule = makeRule().required().smallerThan(20)
+        rule = DS.rule().required().smallerThan(20)
         errors = DSValidator.validate(value: value, rule: rule)
         XCTAssertEqual(errors.count, 1)
         XCTAssertEqual(errors.first?.code, .wrongType)
     }
 
     func testMultipleErrorsTillFirstErrorReturnOneError() {
-        let rule = makeRule().required().greaterThan(22).equal(50)
+        let rule = DS.rule().required().greaterThan(22).equal(50)
         let errors = DSValidator.validate(value: 21, tillFirstError: true, rule: rule)
         XCTAssertEqual(errors.count, 1)
         let code = errors.first!.code

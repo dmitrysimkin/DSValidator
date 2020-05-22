@@ -78,9 +78,3 @@ public final class DSValidator {
         return errors
     }
 }
-
-// TODO: think of better naming
-public func makeRule(name: String? = nil,
-                     defaultMessagesProvder: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
-    return DSValueValidator(name: name ?? "Value", defaultMessagesProvder: defaultMessagesProvder)
-}
