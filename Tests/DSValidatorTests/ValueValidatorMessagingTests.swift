@@ -18,7 +18,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         defaultMessagesProvider.errorMessageByCodeHook = { (_,_) in
             return "Default Message"
         }
-        let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvder: defaultMessagesProvider)
+        let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: defaultMessagesProvider)
         XCTAssertNil(validator.delegate)
         validator.fail(.empty)
         var error = validator.validate(value: "Test")
@@ -43,7 +43,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         defaultMessagesProvider.errorMessageByCodeHook = { (_,_) in
             return "Default Message"
         }
-        let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvder: defaultMessagesProvider)
+        let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: defaultMessagesProvider)
         XCTAssertNil(validator.delegate)
         validator.fail(.empty)
 

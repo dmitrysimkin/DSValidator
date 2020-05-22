@@ -11,7 +11,7 @@ import XCTest
 
 class ValueValidatorDateTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvder: MockErrorMessagesDelegate())
+    let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
 
     // MARK: - Earlier then
     func testEarlierThen_Success() {

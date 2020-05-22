@@ -11,8 +11,8 @@ import Foundation
 public class DS {
     private static let defaultPropertyName = "Value"
     public static func rule(for name: String? = nil,
-                            defaultMessagesProvder: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
+                            messagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
         let name = name ?? DS.defaultPropertyName
-        return DSValueValidator(name: name, defaultMessagesProvder: defaultMessagesProvder)
+        return DSValueValidator(name: name, defaultMessagesProvider: messagesProvider)
     }
 }

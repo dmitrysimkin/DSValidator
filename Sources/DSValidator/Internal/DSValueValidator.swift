@@ -16,13 +16,13 @@ final class DSValueValidator: ValueValidator {
     private(set) var validations = [Validation]()
 
     var delegate: ErrorMessagesDelegate?
-    var defaultMessagesProvder: ErrorMessagesDelegate
+    var defaultMessagesProvider: ErrorMessagesDelegate
     private var errorMessages = [ValidationError.Code: String]()
 
-    init(name: String, defaultMessagesProvder: ErrorMessagesDelegate = DSDefaultMessagesProvider()) {
+    init(name: String, defaultMessagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) {
         self.name = name
         self.localizedName = name
-        self.defaultMessagesProvder = defaultMessagesProvder
+        self.defaultMessagesProvider = defaultMessagesProvider
     }
 
     private var isRequired = false
@@ -169,7 +169,7 @@ extension DSValueValidator {
 
         // use default messages
         let name = localizedName.capitalized
-        let defaultMessage = defaultMessagesProvder.errorMessageByCode(code, for: name)
+        let defaultMessage = defaultMessagesProvider.errorMessageByCode(code, for: name)
         return ValidationError(code, message: defaultMessage)
     }
 }

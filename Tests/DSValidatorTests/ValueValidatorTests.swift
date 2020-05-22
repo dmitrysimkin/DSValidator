@@ -11,7 +11,7 @@ import XCTest
 
 class ValueValidatorTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvder: MockErrorMessagesDelegate())
+    let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
 
     func testInit() {
         XCTAssertEqual(validator.order, 500)

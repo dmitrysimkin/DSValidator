@@ -272,9 +272,9 @@
 		12B3B6CB247578290032100C /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				12F6406A24267FD400A395EB /* Constants.swift */,
 				12F640632425410F00A395EB /* Reflection.swift */,
 				12FE1FD62416712800EB1A4F /* EmptyInspectable.swift */,
-				12F6406A24267FD400A395EB /* Constants.swift */,
 				12661253240556F10092E1B0 /* DSRule.swift */,
 				12661251240556D50092E1B0 /* DSValueValidator.swift */,
 				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
