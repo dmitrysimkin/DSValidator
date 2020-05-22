@@ -8,21 +8,16 @@
 
 import Foundation
 
-// TODO: think of better naming
-public func makeRule(name: String? = nil,
-                      defaultMessagesProvder: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
-    return DSValueValidator(name: name ?? "Value", defaultMessagesProvder: defaultMessagesProvder)
-}
 
 public typealias Rules = () -> [ValueValidator]
 
 public final class DSValidator {
 
     public static func validate(object: Any,
-                         tillFirstError: Bool = false,
-                         delegate: ErrorMessagesDelegate? = nil,
-                         scenario: String? = nil,
-                         rules: Rules) -> [ValidationError] {
+                                tillFirstError: Bool = false,
+                                delegate: ErrorMessagesDelegate? = nil,
+                                scenario: String? = nil,
+                                rules: Rules) -> [ValidationError] {
 
         let validators = rules().sorted(by: { $0.order > $1.order })
 
@@ -82,4 +77,10 @@ public final class DSValidator {
 
         return errors
     }
+}
+
+// TODO: think of better naming
+public func makeRule(name: String? = nil,
+                     defaultMessagesProvder: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
+    return DSValueValidator(name: name ?? "Value", defaultMessagesProvder: defaultMessagesProvder)
 }
