@@ -10,11 +10,11 @@ import Foundation
 
 struct DSAnyNumber: Comparable {
     static func < (lhs: DSAnyNumber, rhs: DSAnyNumber) -> Bool {
-        return lhs.number.toDecimal() < rhs.number.toDecimal()
+        return lhs.number.value() < rhs.number.value()
     }
 
     static func == (lhs: DSAnyNumber, rhs: DSAnyNumber) -> Bool {
-        return lhs.number.toDecimal() == rhs.number.toDecimal()
+        return lhs.number.value() == rhs.number.value()
     }
 
     let number: DSNumber

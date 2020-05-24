@@ -11,5 +11,5 @@ import Foundation
 /// Protocol to simplify numbers validation interface
 /// by wrapping up number types (e.g. Float, Double, Decimal, Int variations)
 public protocol DSNumber {
-    func toDecimal() -> Decimal // TODO: rename to value?
+    func value() -> Decimal
 }

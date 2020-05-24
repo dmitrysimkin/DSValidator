@@ -9,57 +9,57 @@
 import Foundation
 
 extension Int: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension Int8: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension Int16: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension Int32: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension Int64: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension UInt: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension UInt8: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension UInt16: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension UInt32: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension UInt64: DSNumber {
-    public func toDecimal() -> Decimal { Decimal(self) }
+    public func value() -> Decimal { Decimal(self) }
 }
 
 extension Float: DSNumber {
-    public func toDecimal() -> Decimal { return NSNumber(value: self).decimalValue }
+    public func value() -> Decimal { return NSNumber(value: self).decimalValue }
 }
 
 extension Decimal: DSNumber {
-    public func toDecimal() -> Decimal { return self }
+    public func value() -> Decimal { return self }
 }
 
 extension NSNumber: DSNumber {
-    public func toDecimal() -> Decimal { return decimalValue }
+    public func value() -> Decimal { return decimalValue }
 }
 
 extension Double: DSNumber {
-    public func toDecimal() -> Decimal { return NSNumber(value: self).decimalValue }
+    public func value() -> Decimal { return NSNumber(value: self).decimalValue }
 }
