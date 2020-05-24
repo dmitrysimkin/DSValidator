@@ -50,6 +50,7 @@
 		129393A9240A739F0002ABF0 /* ValueValidatorMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A8240A739F0002ABF0 /* ValueValidatorMessagingTests.swift */; };
 		129393AE240B23950002ABF0 /* ValueValidator+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393AD240B23950002ABF0 /* ValueValidator+Date.swift */; };
 		129393AF240B23950002ABF0 /* ValueValidator+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393AD240B23950002ABF0 /* ValueValidator+Date.swift */; };
+		12A20957247AC1BD00F99683 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A20956247AC1BD00F99683 /* TestModel.swift */; };
 		12B07289241CE0460017E488 /* ValueValidatorDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B07288241CE0460017E488 /* ValueValidatorDateTests.swift */; };
 		12B0728B241D5F990017E488 /* ValueValidator+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0728A241D5F990017E488 /* ValueValidator+String.swift */; };
 		12B0728D241D663B0017E488 /* ValueValidatorStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0728C241D663B0017E488 /* ValueValidatorStringTests.swift */; };
@@ -128,6 +129,7 @@
 		129393A624099E370002ABF0 /* MockErrorMessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorMessagesDelegate.swift; sourceTree = "<group>"; };
 		129393A8240A739F0002ABF0 /* ValueValidatorMessagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueValidatorMessagingTests.swift; sourceTree = "<group>"; };
 		129393AD240B23950002ABF0 /* ValueValidator+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueValidator+Date.swift"; sourceTree = "<group>"; };
+		12A20956247AC1BD00F99683 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		12B07288241CE0460017E488 /* ValueValidatorDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueValidatorDateTests.swift; sourceTree = "<group>"; };
 		12B0728A241D5F990017E488 /* ValueValidator+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueValidator+String.swift"; sourceTree = "<group>"; };
 		12B0728C241D663B0017E488 /* ValueValidatorStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueValidatorStringTests.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				12F39F4F245EDA9F003958EE /* ValueValidatorCollectionTests.swift */,
 				12F6405B2425196700A395EB /* ValidationErrorTests.swift */,
 				122E48F42402C35D00498538 /* ValueValidator+Extensions.swift */,
+				12A20956247AC1BD00F99683 /* TestModel.swift */,
 				12661255240557460092E1B0 /* Mocks */,
 				126FBE4A24015117006391CC /* Info.plist */,
 				129393A4240987F20002ABF0 /* Utils.swift */,
@@ -448,6 +451,7 @@
 				127CA18224709C6000375036 /* DSNumber+Extensions.swift in Sources */,
 				127CA18024709C3F00375036 /* DSAnyNumber.swift in Sources */,
 				12661252240556D50092E1B0 /* DSValueValidator.swift in Sources */,
+				12A20957247AC1BD00F99683 /* TestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
