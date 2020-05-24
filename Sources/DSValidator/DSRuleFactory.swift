@@ -8,11 +8,16 @@
 
 import Foundation
 
+public typealias Property = String
+
 public class DS {
     private static let defaultPropertyName = "Value"
-    public static func rule(for name: String? = nil,
+    public static func rule(messagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
+        return DSValueValidator(name: DS.defaultPropertyName, defaultMessagesProvider: messagesProvider)
+    }
+
+    public static func rule(for name: Property,
                             messagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
-        let name = name ?? DS.defaultPropertyName
         return DSValueValidator(name: name, defaultMessagesProvider: messagesProvider)
     }
 }

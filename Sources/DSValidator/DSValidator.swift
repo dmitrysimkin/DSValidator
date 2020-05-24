@@ -10,13 +10,14 @@ import Foundation
 
 
 public typealias Rules = () -> [ValueValidator]
+public typealias Scenario = String
 
 public final class DSValidator {
 
     public static func validate(model: Any,
                                 tillFirstError: Bool = false,
                                 delegate: ErrorMessagesDelegate? = nil,
-                                scenario: String? = nil,
+                                scenario: Scenario? = nil,
                                 rules: Rules) -> [ValidationError] {
 
         let validators = rules().sorted(by: { $0.order > $1.order })

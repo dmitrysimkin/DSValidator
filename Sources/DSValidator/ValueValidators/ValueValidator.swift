@@ -8,9 +8,7 @@
 
 import Foundation
 
-public typealias Scenario = String
 public typealias ValidationCondition = () -> Bool
-
 
 public protocol ValueValidator:  AnyObject,
         CustomValidation,
