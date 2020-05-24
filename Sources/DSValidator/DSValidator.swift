@@ -13,7 +13,7 @@ public typealias Rules = () -> [ValueValidator]
 
 public final class DSValidator {
 
-    public static func validate(object: Any,
+    public static func validate(model: Any,
                                 tillFirstError: Bool = false,
                                 delegate: ErrorMessagesDelegate? = nil,
                                 scenario: String? = nil,
@@ -21,7 +21,7 @@ public final class DSValidator {
 
         let validators = rules().sorted(by: { $0.order > $1.order })
 
-        let reflection = Reflection(of: object)
+        let reflection = Reflection(of: model)
         guard reflection.isSupportedType() else {
             return [ValidationError.objectOfNotSupportedType()]
         }

@@ -17,7 +17,7 @@ class ObjectValidatorTests: XCTestCase {
     func testOptionalNilValueValidatedWithoutErrors() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
         let expectation = XCTestExpectation()
-        let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
             [MockValueValidator(name: "confirmPassword").setValidateAllHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertNil(value)
@@ -31,7 +31,7 @@ class ObjectValidatorTests: XCTestCase {
     func testOptionalNilValueNotValid() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
         let expectation = XCTestExpectation()
-        let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
             [MockValueValidator(name: "confirmPassword").setValidateAllHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertNil(value)
@@ -45,7 +45,7 @@ class ObjectValidatorTests: XCTestCase {
     func testNotNilOptionalValueNotValid() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: "123")
         let expectation = XCTestExpectation()
-        let errors = DSValidator.validate(object: model, tillFirstError: true, rules: { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model, tillFirstError: true, rules: { () -> [ValueValidator] in
             return [MockValueValidator(name: "confirmPassword").setValidateHook({ (value) -> ValidationError? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? String, "123")
@@ -61,7 +61,7 @@ class ObjectValidatorTests: XCTestCase {
     func testNotNilOptionalValueValidatedWithoutErrors() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: "password")
         let expectation = XCTestExpectation()
-        let error = DSValidator.validate(object: model, tillFirstError: true, rules: { () -> [ValueValidator] in
+        let error = DSValidator.validate(model: model, tillFirstError: true, rules: { () -> [ValueValidator] in
             return [MockValueValidator(name: "confirmPassword").setValidateHook({ (value) -> ValidationError? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? String, "password")
@@ -85,7 +85,7 @@ class ObjectValidatorTests: XCTestCase {
             Optional<Double>.none as Any
         ]
         for value in values {
-            let errors = DSValidator.validate(object: value, rules: emptyRules)
+            let errors = DSValidator.validate(model: value, rules: emptyRules)
             XCTAssertEqual(errors.count, 1, "Wrong errors count validating value: \(value) of type: \(type(of: value))")
             XCTAssertEqual(errors.first?.code, .objectOfNotSupportedType, "Wrong error code validating value: \(value) of type: \(type(of: value))")
         }
@@ -93,7 +93,7 @@ class ObjectValidatorTests: XCTestCase {
 
     func testValueNotFoundForStruct() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
-        let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
             return [DS.rule(for: "notExistingName").required().notEmpty().length(from: 3, to: 20)]
         }
         XCTAssertEqual(errors.count, 1)
@@ -102,7 +102,7 @@ class ObjectValidatorTests: XCTestCase {
 
     func testValueNotFoundForClass() {
         let model = TestClass(age: 23, date: "27.12.2003")
-        let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
             return [DSValueValidator(name: "username").required().notEmpty().length(from: 3, to: 20)]
         }
         XCTAssertEqual(errors.count, 1)
@@ -111,7 +111,7 @@ class ObjectValidatorTests: XCTestCase {
 
     func testValueNotFoundTillFirstErrorReturnOnlyOneError() {
         let model = TestClass(age: 23, date: "27.12.2003")
-        let errors = DSValidator.validate(object: model, tillFirstError: true) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model, tillFirstError: true) { () -> [ValueValidator] in
             return [DSValueValidator(name: "AGE").required().notEmpty().length(from: 3, to: 20),
                     DSValueValidator(name: "ages").required(),]
         }
@@ -121,7 +121,7 @@ class ObjectValidatorTests: XCTestCase {
 
     func testValueNotFoundAllErrorsReturnsMoreThenOneError() {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
-        let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
             return [DS.rule(for: "Username").required().notEmpty().length(from: 3, to: 20),
                     DS.rule(for: "pass").required(),
                     DS.rule(for: "age").notEmpty()]
@@ -133,7 +133,7 @@ class ObjectValidatorTests: XCTestCase {
     func testValidationBlocksNotCalledWhenValueNotFoundUntillFirstError() {
         let model = TestClass(age: 23, date: "27.12.2003")
         let expectation = XCTestExpectation(isInverted: true)
-        let errors = DSValidator.validate(object: model, tillFirstError: true) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model, tillFirstError: true) { () -> [ValueValidator] in
             return [DS.rule(for: "AGE").addValidation(named: "Test Rule", block: { (_) -> ValidationError.Code? in
                 expectation.fulfill()
                 return .custom(0)
@@ -147,7 +147,7 @@ class ObjectValidatorTests: XCTestCase {
     func testValidationBlocksNotCalledWhenValueNotFound() {
         let model = TestClass(age: 23, date: "27.12.2003")
         let expectation = XCTestExpectation(isInverted: true)
-        let errors = DSValidator.validate(object: model) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
             return [
                 DS.rule(for: "AGE").addValidation(named: "Test Rule", block: { (_) -> ValidationError.Code? in
                     expectation.fulfill()
@@ -167,7 +167,7 @@ class ObjectValidatorTests: XCTestCase {
         let protocolModel: TestProtocol
         protocolModel = model
         let expectation = XCTestExpectation()
-        let errors = DSValidator.validate(object: protocolModel, tillFirstError: true) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: protocolModel, tillFirstError: true) { () -> [ValueValidator] in
             [MockValueValidator(name: "amount").setValidateHook({ (value) -> ValidationError? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Double, 333.33)
@@ -183,7 +183,7 @@ class ObjectValidatorTests: XCTestCase {
         let protocolModel: TestProtocol
         protocolModel = model
         let expectation = XCTestExpectation()
-        let errors = DSValidator.validate(object: protocolModel, tillFirstError: true) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: protocolModel, tillFirstError: true) { () -> [ValueValidator] in
             [MockValueValidator(name: "bonus").setValidateHook({ (value) -> ValidationError? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Double, 0.1)
@@ -197,7 +197,7 @@ class ObjectValidatorTests: XCTestCase {
     func testGettingValueFromSubClass() {
         let model = TestSubClassB(age: 18, date: "03.03.2020", amount: 333.99, bonus: 10.50)
         let expectation = XCTestExpectation(callsCount: 3)
-        let errors = DSValidator.validate(object: model, tillFirstError: true) { () -> [ValueValidator] in
+        let errors = DSValidator.validate(model: model, tillFirstError: true) { () -> [ValueValidator] in
             [MockValueValidator(name: "age").setValidateHook({ (value) -> ValidationError? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Int, 18)
@@ -231,7 +231,7 @@ class ObjectValidatorTests: XCTestCase {
             XCTAssertNotNil(valueValidator.delegate)
             return ValidationError(.notGreater)
         })
-        _ = DSValidator.validate(object: model, tillFirstError: true, delegate: delegate) { [valueValidator] }
+        _ = DSValidator.validate(model: model, tillFirstError: true, delegate: delegate) { [valueValidator] }
         wait(for: [validateExpectation], timeout: 0)
     }
 
@@ -246,7 +246,7 @@ class ObjectValidatorTests: XCTestCase {
         }
 
         let rule = DS.rule(for: "age", messagesProvider: delegate).required().greaterThan(21)
-        let errors = DSValidator.validate(object: model, tillFirstError: true, delegate: delegate) { [rule] }
+        let errors = DSValidator.validate(model: model, tillFirstError: true, delegate: delegate) { [rule] }
         guard let error = errors.first else {
             XCTFail("Should be an error")
             return
