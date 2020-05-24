@@ -8,9 +8,13 @@
 
 import Foundation
 
+/// Block that performs some validation
 public typealias ValidationBlock = (Any?) -> ValidationError.Code?
 
+/// Class that represents one single validation iteration, such as 'required', 'smallerThan(...)', etc.
 public protocol Validation {
+    /// Name that describes validation
     var name: String { get }
+    /// Block that does actual validation
     var block: ValidationBlock { get }
 }
