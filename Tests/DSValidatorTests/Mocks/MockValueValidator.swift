@@ -9,15 +9,15 @@
 import Foundation
 
 final class MockValueValidator: ValueValidator {
-    var name: String
+    var property: Property
     var delegate: ErrorMessagesDelegate?
     var validations = [Validation]()
     var order: Int = 0
     var localizedName: String
 
-    init(name: String) {
-        self.name = name
-        self.localizedName = name
+    init(property: Property) {
+        self.property = property
+        self.localizedName = property
     }
 
     func required() -> ValueValidator { fatalError() }

@@ -12,16 +12,16 @@ let DSValidatorDefaultOrder = 500
 
 final class DSValueValidator: ValueValidator {
 
-    var name: String
+    var property: String
     private(set) var validations = [Validation]()
 
     var delegate: ErrorMessagesDelegate?
     var defaultMessagesProvider: ErrorMessagesDelegate
     private var errorMessages = [ValidationError.Code: String]()
 
-    init(name: String, defaultMessagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) {
-        self.name = name
-        self.localizedName = name
+    init(property: Property, defaultMessagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) {
+        self.property = property
+        self.localizedName = property
         self.defaultMessagesProvider = defaultMessagesProvider
     }
 
@@ -88,7 +88,7 @@ final class DSValueValidator: ValueValidator {
         }
         for validation in validations {
             if let errorCode = validation.block(value) {
-                let error = buildError(with: errorCode, valueName: self.name)
+                let error = buildError(with: errorCode, property: self.property)
                 return error
             }
         }
@@ -102,7 +102,7 @@ final class DSValueValidator: ValueValidator {
         }
         for validation in validations {
             if let errorCode = validation.block(value) {
-                let error = buildError(with: errorCode, valueName: self.name)
+                let error = buildError(with: errorCode, property: self.property)
                 errors.append(error)
             }
         }
@@ -113,7 +113,7 @@ final class DSValueValidator: ValueValidator {
 extension DSValueValidator: CustomValidation {
     @discardableResult
     func addValidation(named: String, block: @escaping (Any?) -> ValidationError.Code?) -> ValueValidator {
-        let validation = DSValidation(name: name) { [weak self] (value) -> ValidationError.Code? in
+        let validation = DSValidation(name: property) { [weak self] (value) -> ValidationError.Code? in
             guard let self = self else { return nil }
             // skip if requred, because required validation already should return error
             if self.isRequired, value == nil { return nil }
@@ -157,19 +157,19 @@ extension DSValueValidator {
         return result
     }
 
-    private func buildError(with code: ValidationError.Code, valueName: String) -> ValidationError {
+    private func buildError(with code: ValidationError.Code, property: String) -> ValidationError {
         // single custom message first if set
         if let message = self.errorMessages[code] {
             return ValidationError(code, message: message)
         }
         // then ask delegate for a message if provided
-        if let delegate = self.delegate, let message = delegate.errorMessageByCode(code, for: valueName) {
+        if let delegate = self.delegate, let message = delegate.errorMessage(by: code, for: property) {
             return ValidationError(code, message: message)
         }
 
         // use default messages
         let name = localizedName.capitalized
-        let defaultMessage = defaultMessagesProvider.errorMessageByCode(code, for: name)
+        let defaultMessage = defaultMessagesProvider.errorMessage(by: code, for: name)
         return ValidationError(code, message: defaultMessage)
     }
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 final class MockErrorMessagesDelegate: ErrorMessagesDelegate {
-    lazy var errorMessageByCodeHook = mock(errorMessageByCode)
-    func errorMessageByCode(_ code: ValidationError.Code, for valueName: String) -> String? {
-        return errorMessageByCodeHook?(code, valueName) ?? nil
+    lazy var errorMessageHook = mock(errorMessage)
+    func errorMessage(by code: ValidationError.Code, for valueName: String) -> String? {
+        return errorMessageHook?(code, valueName) ?? nil
     }
 }

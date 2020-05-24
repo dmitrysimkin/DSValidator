@@ -33,7 +33,7 @@ public final class DSValidator {
         for validator in validators {
             validator.delegate = delegate
 
-            guard properties.contains(validator.name) else {
+            guard properties.contains(validator.property) else {
                 let error = ValidationError.valueNotFound()
                 if tillFirstError {
                     return [error]
@@ -42,7 +42,7 @@ public final class DSValidator {
                 continue
             }
 
-            let value = reflection.value(withKey: validator.name)
+            let value = reflection.value(withKey: validator.property)
 
             if (tillFirstError) {
                 if let validationError = validator.validate(value: value, scenario: scenario) {

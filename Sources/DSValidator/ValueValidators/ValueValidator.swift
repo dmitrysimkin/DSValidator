@@ -17,7 +17,7 @@ public protocol ValueValidator:  AnyObject,
         SyntaxValueValidator,
         NumberValueValidator,
         CollectionValueValidator {
-    var name: String { get }
+    var property: Property { get }
     var delegate: ErrorMessagesDelegate? { get set }
     var validations: [Validation] { get }
     var order: Int { get }

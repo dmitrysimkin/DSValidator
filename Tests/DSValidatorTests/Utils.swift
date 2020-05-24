@@ -62,6 +62,6 @@ extension String: DSDate {
 
 extension XCTestCase {
     func makeDefaultValidator() -> DSValueValidator {
-        return DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
+        return DSValueValidator(property: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
     }
 }

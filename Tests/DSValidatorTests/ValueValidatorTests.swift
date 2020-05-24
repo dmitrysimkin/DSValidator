@@ -11,11 +11,11 @@ import XCTest
 
 class ValueValidatorTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
+    let validator = DSValueValidator(property: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
 
     func testInit() {
         XCTAssertEqual(validator.order, 500)
-        XCTAssertEqual(validator.name, DefaultValueValidatorName)
+        XCTAssertEqual(validator.property, DefaultValueValidatorName)
     }
 
     func testOrder() {
@@ -31,15 +31,15 @@ class ValueValidatorTests: XCTestCase {
 
     func testChangeLocalizedName() {
         let localizedName = "localized validator"
-        XCTAssertEqual(validator.localizedName, validator.name)
+        XCTAssertEqual(validator.localizedName, validator.property)
         validator.localizedName(localizedName)
         XCTAssertEqual(validator.localizedName, localizedName)
     }
 
     func testErrorMessageWithLocalizedNameShouldStartWithLocalizedDescription() {
-        let validator = DSValueValidator(name: DefaultValueValidatorName)
+        let validator = DSValueValidator(property: DefaultValueValidatorName)
         let localizedName = "localized validator"
-        XCTAssertEqual(validator.localizedName, validator.name)
+        XCTAssertEqual(validator.localizedName, validator.property)
         validator.localizedName(localizedName)
             .emptyTestRule()
         let error = validator.validate(value: "any")
@@ -47,13 +47,13 @@ class ValueValidatorTests: XCTestCase {
     }
 
     func testNameIsCapitalizedForDefaultErrorMessages() {
-        var validator = DSValueValidator(name: "date")
+        var validator = DSValueValidator(property: "date")
         validator.fail(.empty)
         var error = validator.validate(value: Date(timeIntervalSince1970: 0))
         XCTAssertFalse(error?.localizedDescription.starts(with: "date") ?? false)
         XCTAssertTrue(error?.localizedDescription.starts(with: "Date") ?? false)
 
-        validator = DSValueValidator(name: "total amount")
+        validator = DSValueValidator(property: "total amount")
         validator.fail(.empty)
         error = validator.validate(value: Float(132.32))
         XCTAssertFalse(error?.localizedDescription.starts(with: "total amount") ?? false)
@@ -61,8 +61,8 @@ class ValueValidatorTests: XCTestCase {
     }
 
     func testErrorMessageWithoutLocalizedNameShouldStartWithName() {
-        let name = "validator"
-        let validator = DSValueValidator(name: name)
+        let property = "validator"
+        let validator = DSValueValidator(property: property)
         validator.emptyTestRule()
         let error = validator.validate(value: "any")
         XCTAssertTrue(error?.localizedDescription.starts(with: "Validator") ?? false)

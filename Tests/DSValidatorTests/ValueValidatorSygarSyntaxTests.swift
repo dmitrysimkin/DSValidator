@@ -11,7 +11,7 @@ import XCTest
 
 class ValueValidatorSygarSyntaxTests: XCTestCase {
 
-    let validator: ValueValidator = DSValueValidator(name: DefaultValueValidatorName)
+    let validator: ValueValidator = DSValueValidator(property: DefaultValueValidatorName)
 
     func testSugar() {
         XCTAssertTrue(validator === validator.is)

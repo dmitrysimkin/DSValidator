@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol ErrorMessagesDelegate {
-    func errorMessageByCode(_ code: ValidationError.Code, for valueName: String) -> String?
+    func errorMessage(by code: ValidationError.Code, for property: Property) -> String?
 }

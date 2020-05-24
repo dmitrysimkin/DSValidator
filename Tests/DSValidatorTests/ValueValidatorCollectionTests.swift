@@ -11,7 +11,7 @@ import XCTest
 
 class ValueValidatorCollectionTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName)
+    let validator = DSValueValidator(property: DefaultValueValidatorName)
 
     func testincludesArray() {
         validator.includes(3)

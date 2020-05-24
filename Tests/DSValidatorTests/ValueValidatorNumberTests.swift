@@ -11,7 +11,7 @@ import XCTest
 
 class ValueValidatorNumberTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName)
+    let validator = DSValueValidator(property: DefaultValueValidatorName)
 
     func testSettingLimitOfDifferentType() {
         var validator = makeDefaultValidator()

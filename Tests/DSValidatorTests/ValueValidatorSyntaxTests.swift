@@ -11,7 +11,7 @@ import XCTest
 
 class ValueValidatorSyntaxTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName)
+    let validator = DSValueValidator(property: DefaultValueValidatorName)
 
     // MARK: - Email
     func testValidEmails() {
@@ -309,7 +309,7 @@ class ValueValidatorSyntaxTests: XCTestCase {
         ]
         testCases.forEach { (testCase) in
             let (pattern, options, value) = testCase
-            let validator = DSValueValidator(name: DefaultValueValidatorName)
+            let validator = DSValueValidator(property: DefaultValueValidatorName)
             validator.regex(pattern, options: options)
             XCTAssertNil(validator.validate(value: value), "\(value) should match to regexp: \(pattern)")
         }
@@ -325,7 +325,7 @@ class ValueValidatorSyntaxTests: XCTestCase {
         ]
         testCases.forEach { (testCase) in
             let (pattern, options, value) = testCase
-            let validator = DSValueValidator(name: DefaultValueValidatorName)
+            let validator = DSValueValidator(property: DefaultValueValidatorName)
             validator.regex(pattern, options: options)
             XCTAssertEqual(validator.validate(value: value)?.code, .notMatchToRegexp, "\(value) should not match to regexp: \(pattern)")
         }

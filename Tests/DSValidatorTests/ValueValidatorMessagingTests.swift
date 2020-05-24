@@ -11,14 +11,14 @@ import XCTest
 
 class ValueValidatorMessagingTests: XCTestCase {
 
-    let validator = DSValueValidator(name: DefaultValueValidatorName)
+    let validator = DSValueValidator(property: DefaultValueValidatorName)
 
     func testDefaultMessageReturnedIfNoCustomMessagesAndNoMessagesDelegate() {
         let defaultMessagesProvider = MockErrorMessagesDelegate()
-        defaultMessagesProvider.errorMessageByCodeHook = { (_,_) in
+        defaultMessagesProvider.errorMessageHook = { (_,_) in
             return "Default Message"
         }
-        let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: defaultMessagesProvider)
+        let validator = DSValueValidator(property: DefaultValueValidatorName, defaultMessagesProvider: defaultMessagesProvider)
         XCTAssertNil(validator.delegate)
         validator.fail(.empty)
         var error = validator.validate(value: "Test")
@@ -31,7 +31,7 @@ class ValueValidatorMessagingTests: XCTestCase {
     }
 
     func testSignleMessageCustomization() {
-        let validator = DSValueValidator(name: DefaultValueValidatorName)
+        let validator = DSValueValidator(property: DefaultValueValidatorName)
         validator.fail(.empty)
         validator.setErrorMessage("Custom", for: .empty)
         let error = validator.validate(value: "Test")
@@ -40,10 +40,10 @@ class ValueValidatorMessagingTests: XCTestCase {
 
     func testProperOrderAskingForMessageError() {
         let defaultMessagesProvider = MockErrorMessagesDelegate()
-        defaultMessagesProvider.errorMessageByCodeHook = { (_,_) in
+        defaultMessagesProvider.errorMessageHook = { (_,_) in
             return "Default Message"
         }
-        let validator = DSValueValidator(name: DefaultValueValidatorName, defaultMessagesProvider: defaultMessagesProvider)
+        let validator = DSValueValidator(property: DefaultValueValidatorName, defaultMessagesProvider: defaultMessagesProvider)
         XCTAssertNil(validator.delegate)
         validator.fail(.empty)
 
@@ -53,7 +53,7 @@ class ValueValidatorMessagingTests: XCTestCase {
 
         // custom delegate messages has higher priority than default messages
         let customMessagesDelegate = MockErrorMessagesDelegate()
-        customMessagesDelegate.errorMessageByCodeHook = { (_,_) in
+        customMessagesDelegate.errorMessageHook = { (_,_) in
             return "Custom Delegate Message"
         }
         validator.delegate = customMessagesDelegate
@@ -75,7 +75,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         let allowEmptyMessage = "Allow Empty"
         let wrongTypeMessage = "Wrong Type"
         expectation.expectedFulfillmentCount = 3
-        delegate.errorMessageByCodeHook = { (code, name) in
+        delegate.errorMessageHook = { (code, _) in
             expectation.fulfill()
             switch code {
             case .required:
@@ -97,7 +97,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         ]
 
         for testCase in testCases {
-            let validator = DSValueValidator(name: DefaultValueValidatorName)
+            let validator = DSValueValidator(property: DefaultValueValidatorName)
             validator.delegate = delegate
             validator.required().notEmpty().earlierThan(Date())
             let error = validator.validateAll(value: testCase.input).first
@@ -111,7 +111,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         let delegate = MockErrorMessagesDelegate()
         let expectation = XCTestExpectation()
         let requiredMessage = "Test Required"
-        delegate.errorMessageByCodeHook = { (code, name) in
+        delegate.errorMessageHook = { (_, _) in
             expectation.fulfill()
             return requiredMessage
         }
@@ -124,11 +124,11 @@ class ValueValidatorMessagingTests: XCTestCase {
     }
 
     func testProperValuesPassedToDelegate() {
-        let validator = DSValueValidator(name: DefaultValueValidatorName)
+        let validator = DSValueValidator(property: DefaultValueValidatorName)
         validator.addValidation(named: "Rule1", block: { _ in return .custom(0) })
         let delegate = MockErrorMessagesDelegate()
         var expectation = XCTestExpectation()
-        delegate.errorMessageByCodeHook = { (code, name) in
+        delegate.errorMessageHook = { (code, name) in
             XCTAssertEqual(name, DefaultValueValidatorName)
             XCTAssertEqual(code, .custom(0))
             expectation.fulfill()
@@ -143,7 +143,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         validator.addValidation(named: "Rule2", block: { _ in return .custom(0) })
         expectation = XCTestExpectation()
         expectation.expectedFulfillmentCount = 2
-        delegate.errorMessageByCodeHook = { (code, name) in
+        delegate.errorMessageHook = { (code, name) in
             XCTAssertEqual(name, DefaultValueValidatorName)
             XCTAssertEqual(code, .custom(0))
             expectation.fulfill()
@@ -168,7 +168,7 @@ class ValueValidatorMessagingTests: XCTestCase {
     func testDefaultMessagesIsNotNil() {
         let provider = DSDefaultMessagesProvider()
         func defaultMessage(_ code: ValidationError.Code) -> String? {
-            return provider.errorMessageByCode(code, for: DefaultValueValidatorName)
+            return provider.errorMessage(by: code, for: DefaultValueValidatorName)
         }
         XCTAssertNotNil(defaultMessage(.required))
         XCTAssertNotNil(defaultMessage(.empty))
