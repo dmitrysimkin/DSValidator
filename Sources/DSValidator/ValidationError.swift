@@ -8,7 +8,9 @@
 
 import Foundation
 
+/// Validation Error
 public struct ValidationError: Error {
+    /// Code of the validatio error
     public enum Code {
 
         // common
@@ -16,10 +18,10 @@ public struct ValidationError: Error {
         case empty
         case wrongType // passed value of wrong type, e.g. expected to validate 'Int' but 'String' value passed
         case objectOfNotSupportedType // type of the object to validate is not supported
-        case valueNotFound // value by provided 'name' is not found
+        case valueNotFound // value by provided 'property' is not found
         case invalidArgument // provided argument parameter(s) is(are) inconsitant
 
-        // custom
+        /// Custom error code. Designed expecially for custom validation rules
         case custom(Int)
 
         // Strings
@@ -61,15 +63,9 @@ public struct ValidationError: Error {
         case notDomain
         case notGeoCoordinate
 
-        //        // CreditCard
+        // CreditCard TODO: ?
         //        case notValidCreditCardNumber
         //        case notValidCreditCardExpirationDate
-        //
-        //        // Data
-        //        case wrongMIMEType
-        //        case wrongMediaType
-        //        case dataTooBig
-        //        case dataTooSmall
 
         // Collections
         case notIncludes
@@ -78,8 +74,10 @@ public struct ValidationError: Error {
         case notExcludedFrom
     }
 
-    let code: Code
-    private var message: String?
+    /// error code
+    public let code: Code
+
+    var message: String?
 
     init(_ code: Code, message: String? = nil) {
         self.code = code
@@ -87,88 +85,4 @@ public struct ValidationError: Error {
     }
 }
 
-extension ValidationError: LocalizedError {
-    private static let DefaultLocalizedMessage = "Validation Error"
-    public var errorDescription: String? { message ?? ValidationError.DefaultLocalizedMessage }
-}
-
-extension ValidationError: Equatable {
-    public static func == (lhs: ValidationError, rhs: ValidationError) -> Bool {
-        guard lhs.message == rhs.message else {
-            return false
-        }
-        switch (lhs.code, rhs.code) {
-        case (.custom(let lhsCustomCode), .custom(let rhsCustomCode)):
-            return lhsCustomCode == rhsCustomCode
-
-        // Common
-        case (.required, .required),
-             (.empty, .empty),
-             (.wrongType, .wrongType),
-             (.invalidArgument, .invalidArgument),
-             (.objectOfNotSupportedType, .objectOfNotSupportedType),
-             (.valueNotFound, .valueNotFound),
-
-        // Date
-        (.notEarlierThan, .notEarlierThan),
-        (.notLaterThan, .notLaterThan),
-        (.notEarlierThanOrEqualTo, .notEarlierThanOrEqualTo),
-        (.notLaterThanOrEqualTo, .notLaterThanOrEqualTo),
-        (.notBetweenDates, .notBetweenDates),
-
-        // String
-        (.lengthNotFrom, .lengthNotFrom),
-        (.lengthNotUpTo, .lengthNotUpTo),
-        (.lengthNotExact, .lengthNotExact),
-        (.lengthNotFromTo, .lengthNotFromTo),
-        (.notMatch, .notMatch),
-        (.notDiffer, .notDiffer),
-        (.notDecimal, .notDecimal),
-        (.noEmoji, .noEmoji),
-        (.hasEmoji, .hasEmoji),
-
-            // Syntax
-        (.notEmail, .notEmail),
-        (.notName, .notName),
-        (.notHTTP, .notHTTP),
-        (.notFile, .notFile),
-        (.notWebSocket, .notWebSocket),
-        (.notIPv4, .notIPv4),
-        (.notIPv6, .notIPv6),
-        (.notMatchToRegexp, .notMatchToRegexp),
-        (.notDomain, .notDomain),
-        (.notGeoCoordinate, .notGeoCoordinate),
-
-            // Number
-        (.notGreater, .notGreater),
-        (.notGreaterOrEqual, .notGreaterOrEqual),
-        (.notSmaller, .notSmaller),
-        (.notSmallerOrEqual, .notSmallerOrEqual),
-        (.notEqual, .notEqual),
-        (.notTrue, .notTrue),
-        (.notFalse, .notFalse),
-
-        // Collection
-        (.notIncludes, .notIncludes),
-        (.notExcludes, .notExcludes),
-        (.notIncludedIn, .notIncludedIn),
-        (.notExcludedFrom, .notExcludedFrom):
-            return true
-            
-        default:
-            return false
-        }
-    }
-}
-
 extension ValidationError.Code: Hashable { }
-
-extension ValidationError {
-    static func objectOfNotSupportedType() -> ValidationError {
-        return ValidationError(.objectOfNotSupportedType, message:  Constants.objectOfNotSupportedTypeErrorMessage)
-    }
-
-    static func valueNotFound() -> ValidationError {
-        return ValidationError(.valueNotFound, message: Constants.valueNotFoundErrorMessage)
-    }
-}

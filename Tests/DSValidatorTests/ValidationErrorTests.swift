@@ -7,9 +7,13 @@
 //
 
 import XCTest
-@testable import DSValidator
 
 class ValidationErrorTests: XCTestCase {
+
+    func testInitWithCode() {
+        let error = ValidationError(.notSmaller, message: nil)
+        XCTAssertEqual(error.code, .notSmaller)
+    }
 
     func testDefaultErrorMessage() {
         let error = ValidationError(.required, message: nil)
