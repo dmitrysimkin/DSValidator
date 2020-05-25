@@ -19,35 +19,27 @@ public class DS {
     /**
      Creates rule not tied to model's property.
      Should be used for single value validation, not for models
-     - Parameters:
-        - messagesProvider: Provider to drive error messages by error code
      - Returns: `ValueValidator` to pass to `DSValidator`
      # Example #
      ```
      let rule = DS.rule().required().length(exact: 4)
-     let errors = DSValidator.validate(value: "Test", rule: rule)
      ```
      */
-    public static func rule(messagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
-        return DSValueValidator(property: DS.defaultPropertyName, defaultMessagesProvider: messagesProvider)
+    public static func rule() -> ValueValidator {
+        return DSValueValidator(property: DS.defaultPropertyName)
     }
 
     /**
      Creates rule for model's property.
      - Parameters:
         - property: Model's property to validate
-        - messagesProvider: Provider to drive error messages by error code.
      - Returns: `ValueValidator` to pass to `DSValidator`
      # Example #
      ```
-     let errors = DSValidator.validate(model: model) {
-         [DS.rule(for: "age").required().greaterThan(18),
-          DS.rule(for: "username").required().notEmpty().length(from: 3, to: 20)]
-     }
+     let rule = DS.rule(for: "username").required().notEmpty().length(from: 3, to: 20)]
      ```
      */
-    public static func rule(for property: Property,
-                            messagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) -> ValueValidator {
-        return DSValueValidator(property: property, defaultMessagesProvider: messagesProvider)
+    public static func rule(for property: Property) -> ValueValidator {
+        return DSValueValidator(property: property)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class DSDefaultMessagesProvider: ErrorMessagesDelegate {
+class DSDefaultMessagesProvider: ErrorMessagesDelegate {
 
     var messages = [ValidationError.Code: String]()
 

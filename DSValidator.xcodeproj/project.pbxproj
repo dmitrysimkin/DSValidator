@@ -228,7 +228,6 @@
 				126FBE54240154DE006391CC /* Validation.swift */,
 				122E48EB2402B1BF00498538 /* ValidationError.swift */,
 				122E48F12402B98700498538 /* ErrorMessagesDelegate.swift */,
-				12FE1FDC2416984000EB1A4F /* DefaultMessagesProvider.swift */,
 				12B3B6CF247579250032100C /* ValueValidators */,
 				12B3B6CE247578DD0032100C /* Models */,
 				12B3B6CB247578290032100C /* Internal */,
@@ -285,6 +284,7 @@
 				12661253240556F10092E1B0 /* DSRule.swift */,
 				12661251240556D50092E1B0 /* DSValueValidator.swift */,
 				127CA17F24709C3F00375036 /* DSAnyNumber.swift */,
+				12FE1FDC2416984000EB1A4F /* DefaultMessagesProvider.swift */,
 				1259C2D824783F94000151EE /* Extensions */,
 			);
 			path = Internal;

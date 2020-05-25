@@ -245,7 +245,8 @@ class ObjectValidatorTests: XCTestCase {
             return "Message"
         }
 
-        let rule = DS.rule(for: "age", messagesProvider: delegate).required().greaterThan(21)
+        let rule = DS.rule(for: "age").required().greaterThan(21)
+        rule.delegate = delegate
         let errors = DSValidator.validate(model: model, tillFirstError: true, delegate: delegate) { [rule] }
         guard let error = errors.first else {
             XCTFail("Should be an error")

@@ -19,10 +19,10 @@ final class DSValueValidator: ValueValidator {
     var defaultMessagesProvider: ErrorMessagesDelegate
     private var errorMessages = [ValidationError.Code: String]()
 
-    init(property: Property, defaultMessagesProvider: ErrorMessagesDelegate = DSDefaultMessagesProvider()) {
+    init(property: Property, defaultMessagesProvider: ErrorMessagesDelegate? = nil) {
         self.property = property
         self.localizedName = property
-        self.defaultMessagesProvider = defaultMessagesProvider
+        self.defaultMessagesProvider = defaultMessagesProvider ?? DSDefaultMessagesProvider()
     }
 
     private var isRequired = false
