@@ -12,6 +12,7 @@ import XCTest
 let emptyRules: Rules = { () -> [ValueValidator] in return [ValueValidator]() }
 
 // TODO: capital and camel style model properties
+// TODO: computed properties 
 class ObjectValidatorTests: XCTestCase {
 
     func testOptionalNilValueValidatedWithoutErrors() {
