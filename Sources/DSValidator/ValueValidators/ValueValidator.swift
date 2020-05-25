@@ -29,6 +29,9 @@ public protocol ValueValidator:  AnyObject,
     @discardableResult func order(_ order: Int) -> ValueValidator
     @discardableResult func when(condition: @escaping ValidationCondition) -> ValueValidator
     @discardableResult func forScenarios(_ scenarios: [Scenario]) -> ValueValidator
+    
+    @discardableResult func equal<T: Equatable>(_ to: T) -> ValueValidator
+    @discardableResult func notEqualMessage(_ message: String) -> ValueValidator
 
     func validate(value: Any?, scenario: Scenario?) -> ValidationError?
     func validateAll(value: Any?, scenario: Scenario?) -> [ValidationError]

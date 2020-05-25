@@ -14,7 +14,6 @@ public protocol NumberValueValidator {
     @discardableResult func greaterThanOrEqual(_ limit: DSNumber) -> ValueValidator
     @discardableResult func smallerThan(_ limit: DSNumber) -> ValueValidator
     @discardableResult func smallerThanOrEqual(_ limit: DSNumber) -> ValueValidator
-    @discardableResult func equal(_ to: DSNumber) -> ValueValidator
     @discardableResult func `true`() -> ValueValidator
     @discardableResult func `false`() -> ValueValidator
 
@@ -22,7 +21,6 @@ public protocol NumberValueValidator {
     @discardableResult func notGreaterThanOrEqualMessage(_ message: String) -> ValueValidator
     @discardableResult func notSmallerThanMessage(_ message: String) -> ValueValidator
     @discardableResult func notSmallerThanOrEqualMessage(_ message: String) -> ValueValidator
-    @discardableResult func notEqualMessage(_ message: String) -> ValueValidator
     @discardableResult func notTrueMessage(_ message: String) -> ValueValidator
     @discardableResult func notFalseMessage(_ message: String) -> ValueValidator
 
@@ -54,13 +52,6 @@ extension ValueValidator {
         addNumberRule(with: Names.smallerThanOrEqual) { (number) -> ValidationError.Code? in
             let result = DSAnyNumber(number) <= DSAnyNumber(limit)
             return result ? nil : .notSmallerOrEqual
-        }
-    }
-
-    @discardableResult func equal(_ to: DSNumber) -> ValueValidator {
-        addNumberRule(with: Names.equal) { (number) -> ValidationError.Code? in
-            let result = DSAnyNumber(number) == DSAnyNumber(to)
-            return result ? nil : .notEqual
         }
     }
 
@@ -105,10 +96,6 @@ extension ValueValidator {
 
     @discardableResult func notSmallerThanOrEqualMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notSmallerOrEqual)
-    }
-
-    @discardableResult func notEqualMessage(_ message: String) -> ValueValidator {
-        setErrorMessage(message, for: .notEqual)
     }
 
     @discardableResult func notTrueMessage(_ message: String) -> ValueValidator {

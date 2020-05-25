@@ -25,6 +25,23 @@ final class DSValueValidator: ValueValidator {
         self.defaultMessagesProvider = defaultMessagesProvider ?? DSDefaultMessagesProvider()
     }
 
+    @discardableResult func equal<T: Equatable>(_ to: T) -> ValueValidator {
+        let validation = DSValidation(name: Names.equal) { (value) -> ValidationError.Code? in
+            let result: ValidationError.Code?
+            if let equatable = value as? T {
+                result = equatable == to ? nil : .notEqual
+            } else if let numberValue = value as? DSNumber,
+                let equalToNumberValue = to as? DSNumber {
+                result = DSAnyNumber(numberValue) == DSAnyNumber(equalToNumberValue) ? nil : .notEqual
+            } else {
+                return .wrongType
+            }
+            return result
+        }
+        validations.append(validation)
+        return self
+    }
+
     private var isRequired = false
     @discardableResult
     func required() -> ValueValidator {
@@ -78,6 +95,11 @@ final class DSValueValidator: ValueValidator {
     func when(condition: @escaping ValidationCondition) -> ValueValidator {
         self.condition = condition
         return self
+    }
+
+    // TODO: add other messages
+    @discardableResult func notEqualMessage(_ message: String) -> ValueValidator {
+        setErrorMessage(message, for: .notEqual)
     }
 
     // MARK: - Validation
@@ -177,4 +199,5 @@ extension DSValueValidator {
 private struct Names {
     static let Required = "Required"
     static let NotEmpty = "NotEmpty"
+    static let equal = "Equal"
 }

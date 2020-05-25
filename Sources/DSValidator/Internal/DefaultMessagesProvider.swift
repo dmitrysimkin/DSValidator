@@ -28,6 +28,7 @@ extension DSDefaultMessagesProvider {
         messages[.required] = "is required."
         messages[.empty] = "is empty."
         messages[.wrongType] = "is wrong type."
+        messages[.notEqual] = "is not equal."
         messages[.invalidArgument] = "" // TODO: message with format is better here, not just 'name + message'
         // Date
         messages[.notEarlierThan] = "isn't earlier than compared date."
@@ -52,7 +53,6 @@ extension DSDefaultMessagesProvider {
         messages[.notGreaterOrEqual] = "is not greater or equal than provided limit."
         messages[.notSmaller] = "is not smaller than provided limit."
         messages[.notSmallerOrEqual] = "is not smaller or equal than provided limit."
-        messages[.notEqual] = "is not equal."
         messages[.notFalse] = "is not false."
         messages[.notTrue] = "is not true."
 

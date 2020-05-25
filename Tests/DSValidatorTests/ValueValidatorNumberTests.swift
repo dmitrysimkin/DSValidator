@@ -157,33 +157,6 @@ class ValueValidatorNumberTests: XCTestCase {
         XCTAssertEqual(validator.validate(value: NSNumber(10000))?.code, .notSmallerOrEqual)
     }
 
-    func testEqual() {
-        var validator = makeDefaultValidator()
-        validator.equal(Float(1/3))
-        XCTAssertNil(validator.validate(value: 1/3))
-        XCTAssertNil(validator.validate(value: Decimal(1/3)))
-        XCTAssertNil(validator.validate(value: NSNumber(value: 1/3)))
-        XCTAssertEqual(validator.validate(value: 1)?.code, .notEqual)
-
-        validator = makeDefaultValidator()
-        validator.equal(10)
-        XCTAssertNil(validator.validate(value: UInt8(10)))
-        XCTAssertNil(validator.validate(value: Float(10)))
-        XCTAssertNil(validator.validate(value: Decimal(10.00)))
-        XCTAssertNil(validator.validate(value: Double(10.0)))
-        XCTAssertNil(validator.validate(value: NSNumber(value: 10)))
-        XCTAssertEqual(validator.validate(value: 1)?.code, .notEqual)
-
-        validator = makeDefaultValidator()
-        validator.equal(Double(13))
-        XCTAssertNil(validator.validate(value: UInt8(13)))
-        XCTAssertNil(validator.validate(value: Int(13)))
-        XCTAssertNil(validator.validate(value: Float(13)))
-        XCTAssertNil(validator.validate(value: Decimal(13.00)))
-        XCTAssertNil(validator.validate(value: NSNumber(value: 13)))
-        XCTAssertEqual(validator.validate(value: 1)?.code, .notEqual)
-    }
-
     func testTrue() {
         validator.true()
         XCTAssertNil(validator.validate(value: true))

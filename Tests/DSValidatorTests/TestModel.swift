@@ -26,9 +26,13 @@ class TestClass {
     }
 }
 
-enum TestEnum {
+enum TestEnum: Equatable {
     case one
     case two
+}
+
+struct TestStructWithEnumProperty {
+    let type: TestEnum
 }
 
 enum TestEnumWithRawValue: Int {
@@ -77,7 +81,18 @@ class TestSubClassB: TestSubClassA {
     }
 }
 
-struct TestStructWithComputedProperty {
+struct TestStructWithComputedProperty: Equatable {
     let stored: String?
-    var computed: Int? { 10 }
+    var computed: Int { 10 * multiplier }
+    let multiplier: Int
+
+    init(stored: String, multiplier: Int) {
+        self.stored = stored
+        self.multiplier = multiplier
+    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.computed == rhs.computed &&
+            lhs.stored == rhs.stored
+    }
 }

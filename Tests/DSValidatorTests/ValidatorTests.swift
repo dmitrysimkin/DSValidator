@@ -259,7 +259,7 @@ class ObjectValidatorTests: XCTestCase {
     // MARK: - Computed properties
 
     func testComputedPropertyNotSupported() {
-        let model = TestStructWithComputedProperty(stored: "String")
+        let model = TestStructWithComputedProperty(stored: "String", multiplier: 1)
         let errors = DSValidator.validate(model: model, rules: {
             [DS.rule(for: "computed").required().smallerThan(0)]
         })
