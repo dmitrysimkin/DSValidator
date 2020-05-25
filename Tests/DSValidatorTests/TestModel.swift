@@ -76,3 +76,8 @@ class TestSubClassB: TestSubClassA {
         super.init(age: age, date: date, optionalDate: optionalDate, amount: amount)
     }
 }
+
+struct TestStructWithComputedProperty {
+    let stored: String?
+    var computed: Int? { 10 }
+}

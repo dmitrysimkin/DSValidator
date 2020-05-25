@@ -12,7 +12,6 @@ import XCTest
 let emptyRules: Rules = { () -> [ValueValidator] in return [ValueValidator]() }
 
 // TODO: capital and camel style model properties
-// TODO: computed properties 
 class ObjectValidatorTests: XCTestCase {
 
     func testOptionalNilValueValidatedWithoutErrors() {
@@ -255,6 +254,20 @@ class ObjectValidatorTests: XCTestCase {
         }
         XCTAssertEqual(error, ValidationError(.notGreater, message: "Message"))
         wait(for: [delegateExpectation], timeout: 0)
+    }
+
+    // MARK: - Computed properties
+
+    func testComputedPropertyNotSupported() {
+        let model = TestStructWithComputedProperty(stored: "String")
+        let errors = DSValidator.validate(model: model, rules: {
+            [DS.rule(for: "computed").required().smallerThan(0)]
+        })
+        guard let error = errors.first else {
+            XCTFail("Should be an error")
+            return
+        }
+        XCTAssertEqual(error.code, .valueNotFound)
     }
 }
 
