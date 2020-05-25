@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Delegete to provide error messages for specific validation error codes
 public protocol ErrorMessagesDelegate {
     func errorMessage(by code: ValidationError.Code, for property: Property) -> String?
 }
