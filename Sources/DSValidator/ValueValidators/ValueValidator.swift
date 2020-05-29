@@ -25,12 +25,15 @@ public protocol ValueValidator:  AnyObject,
 
     @discardableResult func required() -> ValueValidator
     @discardableResult func notEmpty() -> ValueValidator // ADD doc notes that if only notEmpty rule and passing nil will return no errors
+    @discardableResult func equal<T: Equatable>(_ to: T) -> ValueValidator
+
     @discardableResult func localizedName(_ name: String) -> ValueValidator
     @discardableResult func order(_ order: Int) -> ValueValidator
     @discardableResult func when(condition: @escaping ValidationCondition) -> ValueValidator
     @discardableResult func forScenarios(_ scenarios: [Scenario]) -> ValueValidator
-    
-    @discardableResult func equal<T: Equatable>(_ to: T) -> ValueValidator
+
+    @discardableResult func requiredMessage(_ message: String) -> ValueValidator
+    @discardableResult func emptyMessage(_ message: String) -> ValueValidator
     @discardableResult func notEqualMessage(_ message: String) -> ValueValidator
 
     func validate(value: Any?, scenario: Scenario?) -> ValidationError?

@@ -27,9 +27,9 @@ final class MockValueValidator: ValueValidator {
     func when(condition: @escaping ValidationCondition) -> ValueValidator { fatalError() }
     func forScenarios(_ scenarios: [Scenario]) -> ValueValidator { fatalError() }
     func equal<T>(_ to: T) -> ValueValidator where T : Equatable { fatalError() }
-    func notEqualMessage(_ message: String) -> ValueValidator {
-        return self
-    }
+    func notEqualMessage(_ message: String) -> ValueValidator { return self }
+    func requiredMessage(_ message: String) -> ValueValidator { return self }
+    func emptyMessage(_ message: String) -> ValueValidator { return self }
 
     var validateHook: ((Any?) -> ValidationError?)?
     func setValidateHook(_ hook: @escaping (Any?) -> ValidationError?) -> ValueValidator {
