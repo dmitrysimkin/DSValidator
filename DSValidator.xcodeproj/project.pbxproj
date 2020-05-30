@@ -28,8 +28,8 @@
 		1244623F24829786007A6E6A /* DSValueValidator+Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1244623D24829786007A6E6A /* DSValueValidator+Number.swift */; };
 		124462412482978D007A6E6A /* DSValueValidator+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124462402482978D007A6E6A /* DSValueValidator+Collection.swift */; };
 		124462422482978D007A6E6A /* DSValueValidator+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124462402482978D007A6E6A /* DSValueValidator+Collection.swift */; };
-		12446245248299C8007A6E6A /* CustomValueValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446244248299C8007A6E6A /* CustomValueValidator.swift */; };
-		12446246248299C8007A6E6A /* CustomValueValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446244248299C8007A6E6A /* CustomValueValidator.swift */; };
+		12446245248299C8007A6E6A /* ValueValidator+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446244248299C8007A6E6A /* ValueValidator+Custom.swift */; };
+		12446246248299C8007A6E6A /* ValueValidator+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446244248299C8007A6E6A /* ValueValidator+Custom.swift */; };
 		1266125024054EF90092E1B0 /* TestValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1266124F24054EF90092E1B0 /* TestValidation.swift */; };
 		12661252240556D50092E1B0 /* DSValueValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12661251240556D50092E1B0 /* DSValueValidator.swift */; };
 		12661254240556F10092E1B0 /* DSRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12661253240556F10092E1B0 /* DSRule.swift */; };
@@ -124,7 +124,7 @@
 		1244623A2482977E007A6E6A /* DSValueValidator+Syntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSValueValidator+Syntax.swift"; sourceTree = "<group>"; };
 		1244623D24829786007A6E6A /* DSValueValidator+Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSValueValidator+Number.swift"; sourceTree = "<group>"; };
 		124462402482978D007A6E6A /* DSValueValidator+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSValueValidator+Collection.swift"; sourceTree = "<group>"; };
-		12446244248299C8007A6E6A /* CustomValueValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomValueValidator.swift; sourceTree = "<group>"; };
+		12446244248299C8007A6E6A /* ValueValidator+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueValidator+Custom.swift"; sourceTree = "<group>"; };
 		1266124F24054EF90092E1B0 /* TestValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestValidation.swift; sourceTree = "<group>"; };
 		12661251240556D50092E1B0 /* DSValueValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSValueValidator.swift; sourceTree = "<group>"; };
 		12661253240556F10092E1B0 /* DSRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSRule.swift; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 				12CC5F382430B7C80034F946 /* ValueValidator+Syntax.swift */,
 				12BCB0F2245DB39000601ABA /* ValueValidator+Number.swift */,
 				12F39F4C245ED6B8003958EE /* ValueValidator+Collection.swift */,
-				12446244248299C8007A6E6A /* CustomValueValidator.swift */,
+				12446244248299C8007A6E6A /* ValueValidator+Custom.swift */,
 			);
 			path = ValueValidators;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 				12FE1FD72416712800EB1A4F /* EmptyInspectable.swift in Sources */,
 				12661254240556F10092E1B0 /* DSRule.swift in Sources */,
 				127CA18424709CD200375036 /* DSSyntax.swift in Sources */,
-				12446245248299C8007A6E6A /* CustomValueValidator.swift in Sources */,
+				12446245248299C8007A6E6A /* ValueValidator+Custom.swift in Sources */,
 				129393AE240B23950002ABF0 /* ValueValidator+Date.swift in Sources */,
 				12F6406B24267FD400A395EB /* Constants.swift in Sources */,
 				127CA17C24709BD600375036 /* DSDate.swift in Sources */,
@@ -509,7 +509,7 @@
 				12F6406E2427B1F200A395EB /* MockValueValidator.swift in Sources */,
 				127B4CB8247AE143000484E1 /* ValidationError+Extensions.swift in Sources */,
 				12F6406C2426840D00A395EB /* Constants.swift in Sources */,
-				12446246248299C8007A6E6A /* CustomValueValidator.swift in Sources */,
+				12446246248299C8007A6E6A /* ValueValidator+Custom.swift in Sources */,
 				126FBE4924015117006391CC /* RuleTests.swift in Sources */,
 				127CA18724709D4D00375036 /* DSSyntax.swift in Sources */,
 				12F39F4B245DE18A003958EE /* DSNumber.swift in Sources */,
