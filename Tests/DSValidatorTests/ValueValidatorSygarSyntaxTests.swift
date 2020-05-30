@@ -26,6 +26,9 @@ class ValueValidatorSygarSyntaxTests: XCTestCase {
         XCTAssertTrue(validator === validator.with)
         XCTAssertTrue(validator === validator.contains)
         XCTAssertTrue(validator === validator.only)
+        XCTAssertTrue(validator === validator.and)
+        let validator = makeDefaultValidator()
+        validator.is.required().has.to.be.notEmpty().and.length(from: 3, to: 20)
     }
 }
 

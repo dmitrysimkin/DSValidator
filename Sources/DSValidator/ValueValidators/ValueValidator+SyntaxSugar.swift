@@ -8,6 +8,13 @@
 
 import Foundation
 
+/**
+ Validation syntax sugar
+ # Example #
+ ```
+ let rule = DS.rule(for: "username").is.required().has.to.be.notEmpty().and.length(from: 3, to: 20)]
+ ```
+*/
 extension ValueValidator {
     var `is`: ValueValidator { self }
     var are: ValueValidator { self }
@@ -21,4 +28,5 @@ extension ValueValidator {
     var with: ValueValidator { self }
     var contains: ValueValidator { self }
     var only: ValueValidator { self }
+    var and: ValueValidator { self }
 }
