@@ -9,7 +9,6 @@
 import XCTest
 @testable import DSValidator
 
-// TODO: generic equal, to be able compare enums for example
 class ValueValidatorTests: XCTestCase {
 
     let validator = DSValueValidator(property: DefaultValueValidatorName, defaultMessagesProvider: MockErrorMessagesDelegate())
