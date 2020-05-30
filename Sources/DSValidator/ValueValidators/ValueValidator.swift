@@ -40,9 +40,3 @@ public protocol ValueValidator:  AnyObject,
     func validate(value: Any?, scenario: Scenario?) -> ValidationError?
     func validateAll(value: Any?, scenario: Scenario?) -> [ValidationError]
 }
-
-public protocol CustomValidation {
-    @discardableResult func addValidation(named: String, block: @escaping ValidationBlock) -> ValueValidator
-    @discardableResult func setErrorMessage(_ message: String, for code: ValidationError.Code) -> ValueValidator
-}
-
