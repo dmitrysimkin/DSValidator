@@ -17,11 +17,11 @@ public protocol NumberValueValidator {
     @discardableResult func `true`() -> ValueValidator
     @discardableResult func `false`() -> ValueValidator
 
-    @discardableResult func notGreaterThanMessage(_ message: String) -> ValueValidator
-    @discardableResult func notGreaterThanOrEqualMessage(_ message: String) -> ValueValidator
-    @discardableResult func notSmallerThanMessage(_ message: String) -> ValueValidator
-    @discardableResult func notSmallerThanOrEqualMessage(_ message: String) -> ValueValidator
-    @discardableResult func notTrueMessage(_ message: String) -> ValueValidator
-    @discardableResult func notFalseMessage(_ message: String) -> ValueValidator
+    @discardableResult func notGreaterThanErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notGreaterThanOrEqualErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notSmallerThanErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notSmallerThanOrEqualErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notTrueErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notFalseErrorMessage(_ message: String) -> ValueValidator
 
 }

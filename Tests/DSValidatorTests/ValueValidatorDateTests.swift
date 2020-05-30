@@ -291,7 +291,7 @@ class ValueValidatorDateTests: XCTestCase {
     }
 
     func testNotEarlierOrEqualErrorMessage() {
-        validator.earlierOrEqualTo("15.06.2034 09:00:00").notEarlierOrEqualToMessage("earlierOrEqualTo")
+        validator.earlierOrEqualTo("15.06.2034 09:00:00").notEarlierOrEqualToErrorMessage("earlierOrEqualTo")
         let second: Date = "15.06.2034 09:00:01"
         XCTAssertEqual(validator.validate(value: second), ValidationError(.notEarlierThanOrEqualTo, message: "earlierOrEqualTo"))
     }
@@ -303,19 +303,19 @@ class ValueValidatorDateTests: XCTestCase {
     }
 
     func testNotLaterOrEqualErrorMessage() {
-        validator.laterOrEqualTo("21.07.2012 12:00:00").notLaterOrEqualToMessage("secondEarlier")
+        validator.laterOrEqualTo("21.07.2012 12:00:00").notLaterOrEqualToErrorMessage("secondEarlier")
         let secondEarlier: Date = "21.07.2012 11:59:59"
         XCTAssertEqual(validator.validate(value: secondEarlier), ValidationError(.notLaterThanOrEqualTo, message: "secondEarlier"))
     }
 
     func testNotBetweenDatesErrorMessage() {
-        validator.betweenDates("14.03.2020 15:43:10", "14.03.2020 15:43:15").notBetweenDatesMessage("betweenDates")
+        validator.betweenDates("14.03.2020 15:43:10", "14.03.2020 15:43:15").notBetweenDatesErrorMessage("betweenDates")
         XCTAssertEqual(validator.validate(value: "14.03.2020 15:43:09" as Date),
                        ValidationError(.notBetweenDates, message: "betweenDates"))
     }
 
     func testNotBetweenDatesNotIncludingErrorMessage() {
-        validator.betweenDatesNotIncluding("07.07.2020", "14.07.2020").notBetweenDatesMessage("betweenDates")
+        validator.betweenDatesNotIncluding("07.07.2020", "14.07.2020").notBetweenDatesErrorMessage("betweenDates")
         XCTAssertEqual(validator.validate(value: "07.07.2020 00:00:00" as Date),
                        ValidationError(.notBetweenDates, message: "betweenDates"))
     }

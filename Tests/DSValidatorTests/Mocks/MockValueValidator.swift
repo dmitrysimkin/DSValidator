@@ -27,9 +27,9 @@ final class MockValueValidator: ValueValidator {
     func when(condition: @escaping ValidationCondition) -> ValueValidator { fatalError() }
     func forScenarios(_ scenarios: [Scenario]) -> ValueValidator { fatalError() }
     func equal<T>(_ to: T) -> ValueValidator where T : Equatable { fatalError() }
-    func notEqualMessage(_ message: String) -> ValueValidator { fatalError() }
-    func requiredMessage(_ message: String) -> ValueValidator { fatalError() }
-    func emptyMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notEqualErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func requiredErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func emptyErrorMessage(_ message: String) -> ValueValidator { fatalError() }
 
     var validateHook: ((Any?) -> ValidationError?)?
     func setValidateHook(_ hook: @escaping (Any?) -> ValidationError?) -> ValueValidator {
@@ -60,38 +60,38 @@ final class MockValueValidator: ValueValidator {
     func laterThan(_ date: DSDate) -> ValueValidator { fatalError() }
     func notLaterThanErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func earlierOrEqualTo(_ date: DSDate) -> ValueValidator { fatalError() }
-    func notEarlierOrEqualToMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notEarlierOrEqualToErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func laterOrEqualTo(_ date: DSDate) -> ValueValidator { fatalError() }
-    func notLaterOrEqualToMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notLaterOrEqualToErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func betweenDates(_ fromDate: DSDate, _ toDate: DSDate) -> ValueValidator { fatalError() }
     func betweenDatesNotIncluding(_ fromDate: DSDate, _ toDate: DSDate) -> ValueValidator { fatalError() }
-    func notBetweenDatesMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notBetweenDatesErrorMessage(_ message: String) -> ValueValidator { fatalError() }
 
     // String
     func length(from length: Int) -> ValueValidator { fatalError() }
-    func lengthNotFromMessage(_ message: String) -> ValueValidator { fatalError() }
+    func lengthNotFromErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func length(upTo length: Int) -> ValueValidator { fatalError() }
-    func lengthNotUpToMessage(_ message: String) -> ValueValidator { fatalError() }
+    func lengthNotUpToErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func length(exact length: Int) -> ValueValidator { fatalError() }
-    func lengthNoExactMessage(_ message: String) -> ValueValidator { fatalError() }
+    func lengthNoExactErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func length(from: Int, to: Int) -> ValueValidator { fatalError() }
-    func lengthNotFromToMessage(_ message: String) -> ValueValidator { fatalError() }
+    func lengthNotFromToErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func match(_ string: String) -> ValueValidator { fatalError() }
-    func notMatchMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notMatchErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func differ(_ string: String) -> ValueValidator { fatalError() }
-    func notDifferMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notDifferErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func decimal() -> ValueValidator { fatalError() }
-    func notDecimalMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notDecimalErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func hasEmoji() -> ValueValidator { fatalError() }
-    func noEmojiMessage(_ message: String) -> ValueValidator { fatalError() }
+    func noEmojiErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func hasNoEmoji() -> ValueValidator { fatalError() }
-    func hasEmojiMessage(_ message: String) -> ValueValidator { fatalError() }
+    func hasEmojiErrorMessage(_ message: String) -> ValueValidator { fatalError() }
 
     // Syntax
     func syntax(_ syntax: DSSyntax) -> ValueValidator { fatalError() }
     func regex(_ pattern: String, options: NSRegularExpression.Options) -> ValueValidator { fatalError() }
-    func wrongSyntaxMessage(_ syntax: DSSyntax, message: String) -> ValueValidator { fatalError() }
-    func wrongRegexpMessage(_ message: String) -> ValueValidator { fatalError() }
+    func wrongSyntaxErrorMessage(_ syntax: DSSyntax, message: String) -> ValueValidator { fatalError() }
+    func wrongRegexpErrorMessage(_ message: String) -> ValueValidator { fatalError() }
 
     // Number
     func greaterThan(_ limit: DSNumber) -> ValueValidator { fatalError() }
@@ -100,10 +100,10 @@ final class MockValueValidator: ValueValidator {
     func smallerThanOrEqual(_ limit: DSNumber) -> ValueValidator { fatalError() }
     func `true`() -> ValueValidator { fatalError() }
     func `false`() -> ValueValidator { fatalError() }
-    func notGreaterThanMessage(_ message: String) -> ValueValidator { fatalError() }
-    func notGreaterThanOrEqualMessage(_ message: String) -> ValueValidator { fatalError() }
-    func notSmallerThanMessage(_ message: String) -> ValueValidator { fatalError() }
-    func notSmallerThanOrEqualMessage(_ message: String) -> ValueValidator { fatalError() }
-    func notTrueMessage(_ message: String) -> ValueValidator { fatalError() }
-    func notFalseMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notGreaterThanErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notGreaterThanOrEqualErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notSmallerThanErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notSmallerThanOrEqualErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notTrueErrorMessage(_ message: String) -> ValueValidator { fatalError() }
+    func notFalseErrorMessage(_ message: String) -> ValueValidator { fatalError() }
 }

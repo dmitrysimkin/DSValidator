@@ -97,15 +97,15 @@ final class DSValueValidator: ValueValidator {
         return self
     }
 
-    @discardableResult func requiredMessage(_ message: String) -> ValueValidator {
+    @discardableResult func requiredErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .required)
     }
 
-    @discardableResult func emptyMessage(_ message: String) -> ValueValidator {
+    @discardableResult func emptyErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .empty)
     }
 
-    @discardableResult func notEqualMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notEqualErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notEqual)
     }
 

@@ -14,6 +14,6 @@ public protocol SyntaxValueValidator {
     @discardableResult func syntax(_ syntax: DSSyntax) -> ValueValidator
     @discardableResult func regex(_ pattern: String, options: NSRegularExpression.Options) -> ValueValidator
 
-    @discardableResult func wrongSyntaxMessage(_ syntax: DSSyntax, message: String) -> ValueValidator
-    @discardableResult func wrongRegexpMessage(_ message: String) -> ValueValidator
+    @discardableResult func wrongSyntaxErrorMessage(_ syntax: DSSyntax, message: String) -> ValueValidator
+    @discardableResult func wrongRegexpErrorMessage(_ message: String) -> ValueValidator
 }

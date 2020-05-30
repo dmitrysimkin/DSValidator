@@ -435,13 +435,13 @@ class ValueValidatorTests: XCTestCase {
 
     func testMessages() {
         var validator: ValueValidator
-        validator = makeDefaultValidator().fail(.notEqual).notEqualMessage("NotEqual")
+        validator = makeDefaultValidator().fail(.notEqual).notEqualErrorMessage("NotEqual")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notEqual, message: "NotEqual"))
 
-        validator = makeDefaultValidator().fail(.required).requiredMessage("Required")
+        validator = makeDefaultValidator().fail(.required).requiredErrorMessage("Required")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.required, message: "Required"))
 
-        validator = makeDefaultValidator().fail(.empty).emptyMessage("Empty")
+        validator = makeDefaultValidator().fail(.empty).emptyErrorMessage("Empty")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.empty, message: "Empty"))
     }
 }

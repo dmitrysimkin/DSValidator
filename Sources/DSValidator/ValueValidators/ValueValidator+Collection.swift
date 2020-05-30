@@ -15,9 +15,9 @@ public protocol CollectionValueValidator {
     @discardableResult func includedIn(_ collection: DSCollection) -> ValueValidator
     @discardableResult func excludedFrom(_ collection: DSCollection) -> ValueValidator
 
-    @discardableResult func notIncludesMessage(_ message: String) -> ValueValidator
-    @discardableResult func notExcludesMessage(_ message: String) -> ValueValidator
-    @discardableResult func notIncludedInMessage(_ message: String) -> ValueValidator
-    @discardableResult func notExcludedFromMessage(_ message: String) -> ValueValidator
+    @discardableResult func notIncludesErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notExcludesErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notIncludedInErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notExcludedFromErrorMessage(_ message: String) -> ValueValidator
 
 }

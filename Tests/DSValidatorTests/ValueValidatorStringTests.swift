@@ -218,41 +218,41 @@ class ValueValidatorStringTests: XCTestCase {
 
     // MARK: - Messages
     func testLengthFromErrorMessage() {
-        validator.length(from: 5).lengthNotFromMessage("lengthFrom")
+        validator.length(from: 5).lengthNotFromErrorMessage("lengthFrom")
         XCTAssertEqual(validator.validateAll(value: "4444").first, ValidationError(.lengthNotFrom, message: "lengthFrom"))
     }
 
     func testLengthUpToErrorMessage() {
-        validator.length(upTo: 4).lengthNotUpToMessage("lengthUpTo")
+        validator.length(upTo: 4).lengthNotUpToErrorMessage("lengthUpTo")
         XCTAssertEqual(validator.validate(value: "1321312"),
                        ValidationError(.lengthNotUpTo, message: "lengthUpTo"))
     }
 
     func testLengthExactErrorMessage() {
-        validator.length(exact: 1).lengthNoExactMessage("lengthExact")
+        validator.length(exact: 1).lengthNoExactErrorMessage("lengthExact")
         XCTAssertEqual(validator.validate(value: ""), ValidationError(.lengthNotExact, message: "lengthExact"))
     }
 
     func testLenghtFromAndToErrorMessage() {
-        validator.length(from: 5, to: 5).lengthNotFromToMessage("lengthFromTo")
+        validator.length(from: 5, to: 5).lengthNotFromToErrorMessage("lengthFromTo")
         XCTAssertEqual(validator.validate(value: "4444"),
                        ValidationError(.lengthNotFromTo, message: "lengthFromTo"))
     }
 
     func testMatchErrorMessage() {
-        validator.match("1").notMatchMessage("match")
+        validator.match("1").notMatchErrorMessage("match")
         XCTAssertEqual(validator.validate(value: "2"),
                        ValidationError(.notMatch, message: "match"))
     }
 
     func testDifferErrorMessage() {
-        validator.differ("Test String").notDifferMessage("differ")
+        validator.differ("Test String").notDifferErrorMessage("differ")
         XCTAssertEqual(validator.validate(value: "Test String"),
                        ValidationError(.notDiffer, message: "differ"))
     }
 
     func testNotDecimalMessage() {
-        validator.decimal().notDecimalMessage("Decimal")
+        validator.decimal().notDecimalErrorMessage("Decimal")
         XCTAssertEqual(validator.validate(value: "Test String"),
                        ValidationError(.notDecimal, message: "Decimal"))
     }
@@ -296,13 +296,13 @@ class ValueValidatorStringTests: XCTestCase {
     }
 
     func testCustomHasEmojiMessage() {
-        validator.hasEmoji().noEmojiMessage("Has NO Emoji")
+        validator.hasEmoji().noEmojiErrorMessage("Has NO Emoji")
         XCTAssertEqual(validator.validate(value: "Test String"),
                        ValidationError(.noEmoji, message: "Has NO Emoji"))
     }
 
     func testCustomHasNoEmojiMessage() {
-        validator.hasNoEmoji().hasEmojiMessage("Has Emoji")
+        validator.hasNoEmoji().hasEmojiErrorMessage("Has Emoji")
         XCTAssertEqual(validator.validate(value: "🟠da"),
                        ValidationError(.hasEmoji, message: "Has Emoji"))
     }

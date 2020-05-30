@@ -64,27 +64,27 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notGreaterThanMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notGreaterThanErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notGreater)
     }
 
-    @discardableResult func notGreaterThanOrEqualMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notGreaterThanOrEqualErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notGreaterOrEqual)
     }
 
-    @discardableResult func notSmallerThanMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notSmallerThanErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notSmaller)
     }
 
-    @discardableResult func notSmallerThanOrEqualMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notSmallerThanOrEqualErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notSmallerOrEqual)
     }
 
-    @discardableResult func notTrueMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notTrueErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notTrue)
     }
 
-    @discardableResult func notFalseMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notFalseErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notFalse)
     }
 }

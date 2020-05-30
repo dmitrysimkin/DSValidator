@@ -17,12 +17,12 @@ public protocol DateValueValidator {
     @discardableResult func notLaterThanErrorMessage(_ message: String) -> ValueValidator
 
     @discardableResult func earlierOrEqualTo(_ date: DSDate) -> ValueValidator
-    @discardableResult func notEarlierOrEqualToMessage(_ message: String) -> ValueValidator
+    @discardableResult func notEarlierOrEqualToErrorMessage(_ message: String) -> ValueValidator
 
     @discardableResult func laterOrEqualTo(_ date: DSDate) -> ValueValidator
-    @discardableResult func notLaterOrEqualToMessage(_ message: String) -> ValueValidator
+    @discardableResult func notLaterOrEqualToErrorMessage(_ message: String) -> ValueValidator
 
     @discardableResult func betweenDates(_ fromDate: DSDate, _ toDate: DSDate) -> ValueValidator
     @discardableResult func betweenDatesNotIncluding(_ fromDate: DSDate, _ toDate: DSDate) -> ValueValidator
-    @discardableResult func notBetweenDatesMessage(_ message: String) -> ValueValidator
+    @discardableResult func notBetweenDatesErrorMessage(_ message: String) -> ValueValidator
 }

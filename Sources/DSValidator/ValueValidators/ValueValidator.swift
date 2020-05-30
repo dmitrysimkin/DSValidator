@@ -33,9 +33,9 @@ public protocol ValueValidator:  AnyObject,
     @discardableResult func when(condition: @escaping ValidationCondition) -> ValueValidator
     @discardableResult func forScenarios(_ scenarios: [Scenario]) -> ValueValidator
 
-    @discardableResult func requiredMessage(_ message: String) -> ValueValidator
-    @discardableResult func emptyMessage(_ message: String) -> ValueValidator
-    @discardableResult func notEqualMessage(_ message: String) -> ValueValidator
+    @discardableResult func requiredErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func emptyErrorMessage(_ message: String) -> ValueValidator
+    @discardableResult func notEqualErrorMessage(_ message: String) -> ValueValidator
 
     func validate(value: Any?, scenario: Scenario?) -> ValidationError?
     func validateAll(value: Any?, scenario: Scenario?) -> [ValidationError]

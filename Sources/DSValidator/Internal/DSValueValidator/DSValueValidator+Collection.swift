@@ -40,19 +40,19 @@ extension ValueValidator {
         }
     }
 
-    @discardableResult func notIncludesMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notIncludesErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notIncludes)
     }
 
-    @discardableResult func notExcludesMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notExcludesErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notExcludes)
     }
 
-    @discardableResult func notIncludedInMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notIncludedInErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notIncludedIn)
     }
 
-    @discardableResult func notExcludedFromMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notExcludedFromErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notExcludedFrom)
     }
 }

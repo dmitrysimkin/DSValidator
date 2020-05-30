@@ -47,11 +47,11 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func wrongSyntaxMessage(_ syntax: DSSyntax, message: String) -> ValueValidator {
+    @discardableResult func wrongSyntaxErrorMessage(_ syntax: DSSyntax, message: String) -> ValueValidator {
         setErrorMessage(message, for: syntax.code())
     }
 
-    @discardableResult func wrongRegexpMessage(_ message: String) -> ValueValidator {
+    @discardableResult func wrongRegexpErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notMatchToRegexp)
     }
 }

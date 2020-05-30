@@ -183,25 +183,25 @@ class ValueValidatorNumberTests: XCTestCase {
 
     func testMessages() {
         var validator: ValueValidator
-        validator = makeDefaultValidator().fail(.notGreater).notGreaterThanMessage("NotGreater")
+        validator = makeDefaultValidator().fail(.notGreater).notGreaterThanErrorMessage("NotGreater")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notGreater, message: "NotGreater"))
 
-        validator = makeDefaultValidator().fail(.notGreaterOrEqual).notGreaterThanOrEqualMessage("NotGreaterOrEqual")
+        validator = makeDefaultValidator().fail(.notGreaterOrEqual).notGreaterThanOrEqualErrorMessage("NotGreaterOrEqual")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notGreaterOrEqual, message: "NotGreaterOrEqual"))
 
-        validator = makeDefaultValidator().fail(.notSmaller).notSmallerThanMessage("NotSmaller")
+        validator = makeDefaultValidator().fail(.notSmaller).notSmallerThanErrorMessage("NotSmaller")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notSmaller, message: "NotSmaller"))
 
-        validator = makeDefaultValidator().fail(.notSmallerOrEqual).notSmallerThanOrEqualMessage("NotSmallerOrEqual")
+        validator = makeDefaultValidator().fail(.notSmallerOrEqual).notSmallerThanOrEqualErrorMessage("NotSmallerOrEqual")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notSmallerOrEqual, message: "NotSmallerOrEqual"))
 
-        validator = makeDefaultValidator().fail(.notEqual).notEqualMessage("NotEqual")
+        validator = makeDefaultValidator().fail(.notEqual).notEqualErrorMessage("NotEqual")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notEqual, message: "NotEqual"))
 
-        validator = makeDefaultValidator().fail(.notTrue).notTrueMessage("NotTrue")
+        validator = makeDefaultValidator().fail(.notTrue).notTrueErrorMessage("NotTrue")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notTrue, message: "NotTrue"))
 
-        validator = makeDefaultValidator().fail(.notFalse).notFalseMessage("NotFalse")
+        validator = makeDefaultValidator().fail(.notFalse).notFalseErrorMessage("NotFalse")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notFalse, message: "NotFalse"))
     }
 }

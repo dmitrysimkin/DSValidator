@@ -21,7 +21,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func lengthNotFromMessage(_ message: String) -> ValueValidator {
+    @discardableResult func lengthNotFromErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .lengthNotFrom)
     }
 
@@ -32,7 +32,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func lengthNotUpToMessage(_ message: String) -> ValueValidator {
+    @discardableResult func lengthNotUpToErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .lengthNotUpTo)
     }
 
@@ -43,7 +43,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func lengthNoExactMessage(_ message: String) -> ValueValidator {
+    @discardableResult func lengthNoExactErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .lengthNotExact)
     }
 
@@ -55,7 +55,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func lengthNotFromToMessage(_ message: String) -> ValueValidator {
+    @discardableResult func lengthNotFromToErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .lengthNotFromTo)
     }
 
@@ -66,7 +66,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notMatchMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notMatchErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notMatch)
     }
 
@@ -77,7 +77,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notDifferMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notDifferErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notDiffer)
     }
 
@@ -88,7 +88,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notDecimalMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notDecimalErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notDecimal)
     }
 
@@ -104,11 +104,11 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func noEmojiMessage(_ message: String) -> ValueValidator {
+    @discardableResult func noEmojiErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .noEmoji)
     }
 
-    func hasEmojiMessage(_ message: String) -> ValueValidator {
+    func hasEmojiErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .hasEmoji)
     }
 }

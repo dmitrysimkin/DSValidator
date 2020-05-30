@@ -46,7 +46,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notEarlierOrEqualToMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notEarlierOrEqualToErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notEarlierThanOrEqualTo)
     }
 
@@ -58,7 +58,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notLaterOrEqualToMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notLaterOrEqualToErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notLaterThanOrEqualTo)
     }
 
@@ -83,7 +83,7 @@ extension DSValueValidator {
         }
     }
 
-    @discardableResult func notBetweenDatesMessage(_ message: String) -> ValueValidator {
+    @discardableResult func notBetweenDatesErrorMessage(_ message: String) -> ValueValidator {
         setErrorMessage(message, for: .notBetweenDates)
     }
 }

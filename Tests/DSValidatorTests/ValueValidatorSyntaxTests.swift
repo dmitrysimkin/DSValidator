@@ -427,35 +427,35 @@ class ValueValidatorSyntaxTests: XCTestCase {
 
     func testCustomErrorMessageForSyntax() {
         var validator: ValueValidator
-        validator = makeDefaultValidator().fail(.notEmail).wrongSyntaxMessage(.email, message: "Email")
+        validator = makeDefaultValidator().fail(.notEmail).wrongSyntaxErrorMessage(.email, message: "Email")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notEmail, message: "Email"))
-        validator = makeDefaultValidator().fail(.notName).wrongSyntaxMessage(.name, message: "name")
+        validator = makeDefaultValidator().fail(.notName).wrongSyntaxErrorMessage(.name, message: "name")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notName, message: "name"))
 
-        validator = makeDefaultValidator().fail(.notHTTP).wrongSyntaxMessage(.http, message: "HTTP")
+        validator = makeDefaultValidator().fail(.notHTTP).wrongSyntaxErrorMessage(.http, message: "HTTP")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notHTTP, message: "HTTP"))
 
-        validator = makeDefaultValidator().fail(.notFile).wrongSyntaxMessage(.file, message: "File")
+        validator = makeDefaultValidator().fail(.notFile).wrongSyntaxErrorMessage(.file, message: "File")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notFile, message: "File"))
 
-        validator = makeDefaultValidator().fail(.notWebSocket).wrongSyntaxMessage(.webSocket, message: "WS")
+        validator = makeDefaultValidator().fail(.notWebSocket).wrongSyntaxErrorMessage(.webSocket, message: "WS")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notWebSocket, message: "WS"))
 
-        validator = makeDefaultValidator().fail(.notIPv4).wrongSyntaxMessage(.IPv4, message: "IP4")
+        validator = makeDefaultValidator().fail(.notIPv4).wrongSyntaxErrorMessage(.IPv4, message: "IP4")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notIPv4, message: "IP4"))
 
-        validator = makeDefaultValidator().fail(.notIPv6).wrongSyntaxMessage(.IPv6, message: "IP6")
+        validator = makeDefaultValidator().fail(.notIPv6).wrongSyntaxErrorMessage(.IPv6, message: "IP6")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notIPv6, message: "IP6"))
 
-        validator = makeDefaultValidator().fail(.notDomain).wrongSyntaxMessage(.domain, message: "Domain")
+        validator = makeDefaultValidator().fail(.notDomain).wrongSyntaxErrorMessage(.domain, message: "Domain")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notDomain, message: "Domain"))
 
-        validator = makeDefaultValidator().fail(.notGeoCoordinate).wrongSyntaxMessage(.geoCoordinate, message: "GEO")
+        validator = makeDefaultValidator().fail(.notGeoCoordinate).wrongSyntaxErrorMessage(.geoCoordinate, message: "GEO")
         XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notGeoCoordinate, message: "GEO"))
     }
 
     func testCustomErrorMessageForRegexp() {
-        validator.fail(.notMatchToRegexp).wrongRegexpMessage("Regexp")
+        validator.fail(.notMatchToRegexp).wrongRegexpErrorMessage("Regexp")
         XCTAssertEqual(validator.validate(value: ""), ValidationError(.notMatchToRegexp, message: "Regexp"))
     }
 }
