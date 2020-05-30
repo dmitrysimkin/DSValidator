@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Block that represents condition when validation should be skipped
 public typealias ValidationCondition = () -> Bool
 
 public protocol ValueValidator:  AnyObject,
