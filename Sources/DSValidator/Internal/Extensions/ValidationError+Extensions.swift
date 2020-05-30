@@ -25,6 +25,7 @@ extension ValidationError: Equatable {
         // Common
         case (.required, .required),
              (.empty, .empty),
+             (.notEqual, .notEqual),
              (.wrongType, .wrongType),
              (.invalidArgument, .invalidArgument),
              (.objectOfNotSupportedType, .objectOfNotSupportedType),
@@ -65,7 +66,6 @@ extension ValidationError: Equatable {
         (.notGreaterOrEqual, .notGreaterOrEqual),
         (.notSmaller, .notSmaller),
         (.notSmallerOrEqual, .notSmallerOrEqual),
-        (.notEqual, .notEqual),
         (.notTrue, .notTrue),
         (.notFalse, .notFalse),
 
