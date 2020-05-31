@@ -172,7 +172,7 @@ class ValueValidatorNumberTests: XCTestCase {
     }
 
     func testNotNumberRetursWrongType() {
-        validator.equal(13)
+        validator.equal(to: 13)
         XCTAssertEqual(validator.validate(value: Data())?.code, .wrongType)
         XCTAssertEqual(validator.validate(value: Date())?.code, .wrongType)
         XCTAssertEqual(validator.validate(value: "")?.code, .wrongType)

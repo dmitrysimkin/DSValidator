@@ -26,7 +26,7 @@ public protocol ValueValidator:  AnyObject,
 
     @discardableResult func required() -> ValueValidator
     @discardableResult func notEmpty() -> ValueValidator // ADD doc notes that if only notEmpty rule and passing nil will return no errors
-    @discardableResult func equal<T: Equatable>(_ to: T) -> ValueValidator
+    @discardableResult func equal<T: Equatable>(to: T) -> ValueValidator
 
     @discardableResult func localizedName(_ name: String) -> ValueValidator
     @discardableResult func order(_ order: Int) -> ValueValidator

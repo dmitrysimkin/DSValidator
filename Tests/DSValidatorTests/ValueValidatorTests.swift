@@ -389,14 +389,14 @@ class ValueValidatorTests: XCTestCase {
 
     // MARK: - Equal
     func testEqualWithEnum() {
-        validator.equal(TestEnum.one)
+        validator.equal(to: TestEnum.one)
         XCTAssertEqual(validator.validate(value: TestEnum.two)?.code, .notEqual)
         XCTAssertNil(validator.validate(value: TestEnum.one))
     }
 
     func testEqualWithCustomType() {
         let expected = TestStructWithComputedProperty(stored: "Stored", multiplier: 3)
-        validator.equal(expected)
+        validator.equal(to: expected)
         let val1 = TestStructWithComputedProperty(stored: "Stored", multiplier: 2)
         XCTAssertEqual(validator.validate(value: val1)?.code, .notEqual)
         let val2 = TestStructWithComputedProperty(stored: "Stored", multiplier: 3)
@@ -405,14 +405,14 @@ class ValueValidatorTests: XCTestCase {
 
     func testEqualWithNumber() {
         var validator = makeDefaultValidator()
-        validator.equal(Float(1/3))
+        validator.equal(to: Float(1/3))
         XCTAssertNil(validator.validate(value: 1/3))
         XCTAssertNil(validator.validate(value: Decimal(1/3)))
         XCTAssertNil(validator.validate(value: NSNumber(value: 1/3)))
         XCTAssertEqual(validator.validate(value: 1)?.code, .notEqual)
 
         validator = makeDefaultValidator()
-        validator.equal(10)
+        validator.equal(to: 10)
         XCTAssertNil(validator.validate(value: UInt8(10)))
         XCTAssertNil(validator.validate(value: Float(10)))
         XCTAssertNil(validator.validate(value: Decimal(10.00)))
@@ -421,7 +421,7 @@ class ValueValidatorTests: XCTestCase {
         XCTAssertEqual(validator.validate(value: 1)?.code, .notEqual)
 
         validator = makeDefaultValidator()
-        validator.equal(Double(13))
+        validator.equal(to: Double(13))
         XCTAssertNil(validator.validate(value: UInt8(13)))
         XCTAssertNil(validator.validate(value: Int(13)))
         XCTAssertNil(validator.validate(value: Float(13)))

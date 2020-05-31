@@ -25,7 +25,7 @@ final class DSValueValidator: ValueValidator {
         self.defaultMessagesProvider = defaultMessagesProvider ?? DSDefaultMessagesProvider()
     }
 
-    @discardableResult func equal<T: Equatable>(_ to: T) -> ValueValidator {
+    @discardableResult func equal<T: Equatable>(to: T) -> ValueValidator {
         let validation = DSValidation(name: Names.equal) { (value) -> ValidationError.Code? in
             let result: ValidationError.Code?
             if let equatable = value as? T {

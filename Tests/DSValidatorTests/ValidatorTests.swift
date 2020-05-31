@@ -312,7 +312,7 @@ class OneValueValidatorTests: XCTestCase {
     }
 
     func testMultipleErrorsTillFirstErrorReturnOneError() {
-        let rule = DS.rule().required().greaterThan(22).equal(50)
+        let rule = DS.rule().required().greaterThan(22).equal(to: 50)
         let errors = DSValidator.validate(value: 21, tillFirstError: true, rule: rule)
         XCTAssertEqual(errors.count, 1)
         let code = errors.first!.code
