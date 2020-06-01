@@ -20,16 +20,16 @@ class ValueValidatorStringTests: XCTestCase {
     // MARK: - Lenght from
     func testLengthFrom() {
         validator.length(from: 5)
-        XCTAssertNil(validator.validateAll(value: "12345").first)
-        XCTAssertNil(validator.validateAll(value: "666666").first)
-        XCTAssertNil(validator.validateAll(value: "hszdhasdjksad").first)
-        XCTAssertNil(validator.validateAll(value: "DJAHSDHJGADJA131261327878fda").first)
-        XCTAssertEqual(validator.validateAll(value: "4444").first?.code, .lengthNotFrom)
-        XCTAssertEqual(validator.validateAll(value: "333").first?.code, .lengthNotFrom)
-        XCTAssertEqual(validator.validateAll(value: "22").first?.code, .lengthNotFrom)
-        XCTAssertEqual(validator.validateAll(value: "a").first?.code, .lengthNotFrom)
-        XCTAssertEqual(validator.validateAll(value: "").first?.code, .lengthNotFrom)
-        XCTAssertNil(validator.validateAll(value: nil).first)
+        XCTAssertNil(validator.validate(value: "12345").first)
+        XCTAssertNil(validator.validate(value: "666666").first)
+        XCTAssertNil(validator.validate(value: "hszdhasdjksad").first)
+        XCTAssertNil(validator.validate(value: "DJAHSDHJGADJA131261327878fda").first)
+        XCTAssertEqual(validator.validate(value: "4444").first?.code, .lengthNotFrom)
+        XCTAssertEqual(validator.validate(value: "333").first?.code, .lengthNotFrom)
+        XCTAssertEqual(validator.validate(value: "22").first?.code, .lengthNotFrom)
+        XCTAssertEqual(validator.validate(value: "a").first?.code, .lengthNotFrom)
+        XCTAssertEqual(validator.validate(value: "").first?.code, .lengthNotFrom)
+        XCTAssertNil(validator.validate(value: nil).first)
 
         validator = makeDefaultValidator()
         validator.length(from: 0)
@@ -219,7 +219,7 @@ class ValueValidatorStringTests: XCTestCase {
     // MARK: - Messages
     func testLengthFromErrorMessage() {
         validator.length(from: 5).lengthNotFromErrorMessage("lengthFrom")
-        XCTAssertEqual(validator.validateAll(value: "4444").first, ValidationError(.lengthNotFrom, message: "lengthFrom"))
+        XCTAssertEqual(validator.validate(value: "4444").first, ValidationError(.lengthNotFrom, message: "lengthFrom"))
     }
 
     func testLengthUpToErrorMessage() {

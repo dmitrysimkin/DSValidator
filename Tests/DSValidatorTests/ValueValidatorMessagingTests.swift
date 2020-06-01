@@ -100,7 +100,7 @@ class ValueValidatorMessagingTests: XCTestCase {
             let validator = DSValueValidator(property: DefaultValueValidatorName)
             validator.delegate = delegate
             validator.required().notEmpty().earlierThan(Date())
-            let error = validator.validateAll(value: testCase.input).first
+            let error = validator.validate(value: testCase.input, tillFirstError: false).first
             XCTAssertEqual(error?.localizedDescription, testCase.expectedMessage)
         }
 
@@ -151,7 +151,7 @@ class ValueValidatorMessagingTests: XCTestCase {
         }
 
         validator.delegate = delegate
-        let _ = validator.validateAll(value: "Test")
+        let _ = validator.validate(value: "Test", tillFirstError: false)
         wait(for: [expectation], timeout: 0)
     }
 

@@ -88,16 +88,16 @@ class ValueValidatorCollectionTests: XCTestCase {
     func testMessaging() {
         var validator: ValueValidator
         validator = makeDefaultValidator().fail(.notIncludes).notIncludesErrorMessage("Not includes")
-        XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notIncludes, message: "Not includes"))
+        XCTAssertEqual(validator.validate(value: "", tillFirstError: true, scenario: nil), [ValidationError(.notIncludes, message: "Not includes")])
 
         validator = makeDefaultValidator().fail(.notExcludes).notExcludesErrorMessage("Not excludes") as! DSValueValidator
-        XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notExcludes, message: "Not excludes"))
+        XCTAssertEqual(validator.validate(value: "", tillFirstError: true, scenario: nil), [ValidationError(.notExcludes, message: "Not excludes")])
 
         validator = makeDefaultValidator().fail(.notIncludedIn).notIncludedInErrorMessage("Not included") as! DSValueValidator
-        XCTAssertEqual(validator.validate(value: [1,3], scenario: nil), ValidationError(.notIncludedIn, message: "Not included"))
+        XCTAssertEqual(validator.validate(value: [1,3], tillFirstError: true, scenario: nil), [ValidationError(.notIncludedIn, message: "Not included")])
 
         validator = makeDefaultValidator().fail(.notExcludedFrom).notExcludedFromErrorMessage("Not excluded") as! DSValueValidator
-        XCTAssertEqual(validator.validate(value: [1,3], scenario: nil), ValidationError(.notExcludedFrom, message: "Not excluded"))
+        XCTAssertEqual(validator.validate(value: [1,3], tillFirstError: true, scenario: nil), [ValidationError(.notExcludedFrom, message: "Not excluded")])
     }
 
 }

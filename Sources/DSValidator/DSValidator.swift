@@ -42,7 +42,7 @@ public final class DSValidator {
                                 tillFirstError: Bool = false,
                                 delegate: ErrorMessagesDelegate? = nil,
                                 scenario: Scenario? = nil,
-                                rules: Rules) -> [ValidationError] {
+                                rules: Rules) -> [ValidationError] { // TODO: Think about return empty
 
         let validators = rules().sorted(by: { $0.order > $1.order })
 
@@ -55,8 +55,6 @@ public final class DSValidator {
         var errors: [ValidationError] = []
 
         for validator in validators {
-            validator.delegate = delegate
-
             guard properties.contains(validator.property) else {
                 let error = ValidationError.valueNotFound()
                 if tillFirstError {
@@ -68,14 +66,9 @@ public final class DSValidator {
 
             let value = reflection.value(withKey: validator.property)
 
-            if (tillFirstError) {
-                if let validationError = validator.validate(value: value, scenario: scenario) {
-                    return [validationError]
-                }
-            } else {
-                let validationErrors = validator.validateAll(value: value, scenario: scenario)
-                errors.append(contentsOf: validationErrors)
-            }
+            validator.delegate = delegate
+            let validationErrors = validator.validate(value: value, tillFirstError: tillFirstError, scenario: scenario)
+            errors.append(contentsOf: validationErrors)
         }
 
         return errors
@@ -101,19 +94,8 @@ public final class DSValidator {
                                 delegate: ErrorMessagesDelegate? = nil,
                                 scenario: String? = nil,
                                 rule: ValueValidator) -> [ValidationError] {
-        var errors: [ValidationError] = []
-
         rule.delegate = delegate
-
-        if (tillFirstError) {
-            if let validationError = rule.validate(value: value, scenario: scenario) {
-                return [validationError]
-            }
-        } else {
-            let validationErrors = rule.validateAll(value: value, scenario: scenario)
-            errors.append(contentsOf: validationErrors)
-        }
-
+        let errors = rule.validate(value: value, tillFirstError: tillFirstError, scenario: scenario)
         return errors
     }
 }

@@ -31,24 +31,21 @@ final class MockValueValidator: ValueValidator {
     func requiredErrorMessage(_ message: String) -> ValueValidator { fatalError() }
     func emptyErrorMessage(_ message: String) -> ValueValidator { fatalError() }
 
-    var validateHook: ((Any?) -> ValidationError?)?
-    func setValidateHook(_ hook: @escaping (Any?) -> ValidationError?) -> ValueValidator {
+    func validate(value: Any?, scenario: Scenario?) -> ValidationError? {
+        guard let errors = validateHook?(value) else {
+            return nil
+        }
+        return errors.first
+    }
+
+    var validateHook: ((Any?) -> [ValidationError]?)?
+    func setValidateHook(_ hook: @escaping (Any?) -> [ValidationError]?) -> ValueValidator {
         validateHook = hook
         return self
     }
 
-    func validate(value: Any?, scenario: Scenario?) -> ValidationError? {
-        return validateHook?(value)
-    }
-
-    var validateAllHook: ((Any?) -> [ValidationError]?)?
-    func setValidateAllHook(_ hook: @escaping (Any?) -> [ValidationError]?) -> ValueValidator {
-        validateAllHook = hook
-        return self
-    }
-
-    func validateAll(value: Any?, scenario: Scenario?) -> [ValidationError] {
-        return validateAllHook?(value) ?? [ValidationError]()
+    func validate(value: Any?, tillFirstError: Bool, scenario: Scenario?) -> [ValidationError] {
+        return validateHook?(value) ?? [ValidationError]()
     }
 
     func addValidation(named: String, block: @escaping ValidationBlock) -> ValueValidator { fatalError() }

@@ -112,19 +112,11 @@ final class DSValueValidator: ValueValidator {
     // MARK: - Validation
 
     func validate(value: Any?, scenario: Scenario? = nil) -> ValidationError? {
-        guard shouldValidate(condition: condition, scenario: scenario, scenarios: scenarios) else {
-            return nil
-        }
-        for validation in validations {
-            if let errorCode = validation.block(value) {
-                let error = buildError(with: errorCode, property: self.property)
-                return error
-            }
-        }
-        return nil
+        let errors = validate(value: value, tillFirstError: true, scenario: scenario)
+        return errors.first
     }
 
-    func validateAll(value: Any?, scenario: Scenario? = nil) -> [ValidationError] {
+    func validate(value: Any?, tillFirstError: Bool = false, scenario: Scenario? = nil) -> [ValidationError] {
         var errors = [ValidationError]()
         guard shouldValidate(condition: condition, scenario: scenario, scenarios: scenarios) else {
             return errors
@@ -133,6 +125,9 @@ final class DSValueValidator: ValueValidator {
             if let errorCode = validation.block(value) {
                 let error = buildError(with: errorCode, property: self.property)
                 errors.append(error)
+                if tillFirstError {
+                    break
+                }
             }
         }
         return errors

@@ -146,7 +146,7 @@ class ValueValidatorTests: XCTestCase {
             .fail(.custom(0))
             .emptyTestRule()
         let value: String? = nil
-        let errors = validator.validateAll(value: value)
+        let errors = validator.validate(value: value, tillFirstError: false)
         XCTAssertEqual(errors.count, 1)
         XCTAssertEqual(errors.first, ValidationError(.required))
     }
@@ -157,7 +157,7 @@ class ValueValidatorTests: XCTestCase {
             .emptyTestRule()
             .fail(.custom(1))
         let value: String? = nil
-        let errors = validator.validateAll(value: value)
+        let errors = validator.validate(value: value, tillFirstError: false)
         XCTAssertEqual(errors.count, 0)
     }
 
@@ -214,7 +214,7 @@ class ValueValidatorTests: XCTestCase {
             .fail(.custom(0))
             .emptyTestRule()
         let value: String? = ""
-        let errors = validator.validateAll(value: value)
+        let errors = validator.validate(value: value, tillFirstError: false)
         XCTAssertEqual(errors.count, 1)
         XCTAssertEqual(errors.first, ValidationError(.empty))
     }
@@ -254,7 +254,7 @@ class ValueValidatorTests: XCTestCase {
         validator.addValidation(named: "Rule1", block: block1)
         validator.addValidation(named: "Rule2", block: block2)
 
-        let errors = validator.validateAll(value: 0)
+        let errors = validator.validate(value: 0, tillFirstError: false)
         XCTAssertEqual(errors.count, 2)
         XCTAssertTrue(errors.contains(ValidationError(.required)))
         XCTAssertTrue(errors.contains(ValidationError(.empty)))
@@ -287,7 +287,7 @@ class ValueValidatorTests: XCTestCase {
             return false
         })
 
-        let errors = validator.validateAll(value: 0)
+        let errors = validator.validate(value: 0, tillFirstError: false)
         XCTAssertEqual(errors.count, 0)
         wait(for: [expectation1, expectation2, whenConditionCalledExpectation], timeout: 0)
     }
@@ -311,7 +311,7 @@ class ValueValidatorTests: XCTestCase {
             return true
         })
 
-        let errors = validator.validateAll(value: 0)
+        let errors = validator.validate(value: 0, tillFirstError: false)
         XCTAssertEqual(errors.count, 2)
         wait(for: [expectation1, expectation2, whenConditionCalledExpectation], timeout: 0)
     }
@@ -436,13 +436,13 @@ class ValueValidatorTests: XCTestCase {
     func testMessages() {
         var validator: ValueValidator
         validator = makeDefaultValidator().fail(.notEqual).notEqualErrorMessage("NotEqual")
-        XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.notEqual, message: "NotEqual"))
+        XCTAssertEqual(validator.validate(value: "", tillFirstError: true, scenario: nil), [ValidationError(.notEqual, message: "NotEqual")])
 
         validator = makeDefaultValidator().fail(.required).requiredErrorMessage("Required")
-        XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.required, message: "Required"))
+        XCTAssertEqual(validator.validate(value: "", tillFirstError: true, scenario: nil), [ValidationError(.required, message: "Required")])
 
         validator = makeDefaultValidator().fail(.empty).emptyErrorMessage("Empty")
-        XCTAssertEqual(validator.validate(value: "", scenario: nil), ValidationError(.empty, message: "Empty"))
+        XCTAssertEqual(validator.validate(value: "", tillFirstError: true, scenario: nil), [ValidationError(.empty, message: "Empty")])
     }
 }
 

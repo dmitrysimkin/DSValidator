@@ -18,7 +18,7 @@ class ObjectValidatorTests: XCTestCase {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
         let expectation = XCTestExpectation()
         let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
-            [MockValueValidator(property: "confirmPassword").setValidateAllHook({ (value) -> [ValidationError]? in
+            [MockValueValidator(property: "confirmPassword").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertNil(value)
                 return nil
@@ -32,7 +32,7 @@ class ObjectValidatorTests: XCTestCase {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: nil)
         let expectation = XCTestExpectation()
         let errors = DSValidator.validate(model: model) { () -> [ValueValidator] in
-            [MockValueValidator(property: "confirmPassword").setValidateAllHook({ (value) -> [ValidationError]? in
+            [MockValueValidator(property: "confirmPassword").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertNil(value)
                 return nil
@@ -46,10 +46,10 @@ class ObjectValidatorTests: XCTestCase {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: "123")
         let expectation = XCTestExpectation()
         let errors = DSValidator.validate(model: model, tillFirstError: true, rules: { () -> [ValueValidator] in
-            return [MockValueValidator(property: "confirmPassword").setValidateHook({ (value) -> ValidationError? in
+            return [MockValueValidator(property: "confirmPassword").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? String, "123")
-                return ValidationError(.custom(1000))
+                return [ValidationError(.custom(1000))]
             })]
         })
         XCTAssertEqual(errors.count, 1)
@@ -62,7 +62,7 @@ class ObjectValidatorTests: XCTestCase {
         let model = UserCredentialsInput(username: "Username", password: "12345678", confirmPassword: "password")
         let expectation = XCTestExpectation()
         let error = DSValidator.validate(model: model, tillFirstError: true, rules: { () -> [ValueValidator] in
-            return [MockValueValidator(property: "confirmPassword").setValidateHook({ (value) -> ValidationError? in
+            return [MockValueValidator(property: "confirmPassword").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? String, "password")
                 return nil
@@ -168,7 +168,7 @@ class ObjectValidatorTests: XCTestCase {
         protocolModel = model
         let expectation = XCTestExpectation()
         let errors = DSValidator.validate(model: protocolModel, tillFirstError: true) { () -> [ValueValidator] in
-            [MockValueValidator(property: "amount").setValidateHook({ (value) -> ValidationError? in
+            [MockValueValidator(property: "amount").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Double, 333.33)
                 return nil
@@ -184,7 +184,7 @@ class ObjectValidatorTests: XCTestCase {
         protocolModel = model
         let expectation = XCTestExpectation()
         let errors = DSValidator.validate(model: protocolModel, tillFirstError: true) { () -> [ValueValidator] in
-            [MockValueValidator(property: "bonus").setValidateHook({ (value) -> ValidationError? in
+            [MockValueValidator(property: "bonus").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Double, 0.1)
                 return nil
@@ -198,17 +198,17 @@ class ObjectValidatorTests: XCTestCase {
         let model = TestSubClassB(age: 18, date: "03.03.2020", amount: 333.99, bonus: 10.50)
         let expectation = XCTestExpectation(callsCount: 3)
         let errors = DSValidator.validate(model: model, tillFirstError: true) { () -> [ValueValidator] in
-            [MockValueValidator(property: "age").setValidateHook({ (value) -> ValidationError? in
+            [MockValueValidator(property: "age").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Int, 18)
                 return nil
             }),
-             MockValueValidator(property: "amount").setValidateHook({ (value) -> ValidationError? in
+             MockValueValidator(property: "amount").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertEqual(value as? Double, 333.99)
                 return nil
              }),
-             MockValueValidator(property: "optionalDate").setValidateHook({ (value) -> ValidationError? in
+             MockValueValidator(property: "optionalDate").setValidateHook({ (value) -> [ValidationError]? in
                 expectation.fulfill()
                 XCTAssertNil(value)
                 return nil
@@ -225,11 +225,11 @@ class ObjectValidatorTests: XCTestCase {
         let validateExpectation = XCTestExpectation()
         let valueValidator = MockValueValidator(property: "age")
         XCTAssertNil(valueValidator.delegate)
-        let _ = valueValidator.setValidateHook({ (value) -> ValidationError? in
+        let _ = valueValidator.setValidateHook({ (value) -> [ValidationError]? in
             validateExpectation.fulfill()
             XCTAssertEqual(value as? Int, 18)
             XCTAssertNotNil(valueValidator.delegate)
-            return ValidationError(.notGreater)
+            return [ValidationError(.notGreater)]
         })
         _ = DSValidator.validate(model: model, tillFirstError: true, delegate: delegate) { [valueValidator] }
         wait(for: [validateExpectation], timeout: 0)

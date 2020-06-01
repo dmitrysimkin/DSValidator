@@ -99,20 +99,12 @@ public protocol ValueValidator:  AnyObject,
     @discardableResult func forScenarios(_ scenarios: [Scenario]) -> ValueValidator
 
     /**
-     Performs validation logic, stops when finds first error and returns it.
+     Performs validation logic by executing rules and collection errors
      - Parameters:
         - value: Value to validate
-        - scenario: Optional scenario to run validation for. Only rules referenced with provided screnario will be executed
-     - Returns: `ValidationError` if was found
-    */
-    func validate(value: Any?, scenario: Scenario?) -> ValidationError?
-
-    /**
-     Performs validation logic, finds all errors and returns them.
-     - Parameters:
-        - value: Value to validate
+        - tillFirstError: If `true` then validation stops when first error found
         - scenario: Optional scenario to run validation for. Only rules referenced with provided screnario will be executed
      - Returns: List of errors was found. Empty if all rules validated successfully
     */
-    func validateAll(value: Any?, scenario: Scenario?) -> [ValidationError]
+    func validate(value: Any?, tillFirstError: Bool, scenario: Scenario?) -> [ValidationError]
 }
