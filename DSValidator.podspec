@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/dmitrysimkin/DSValidator"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "Simkin Dmitry" => "dmitry.simkin@mail.ru" }
-  s.platform     = :ios, "10.3"
+  s.platform     = :ios, "11.4"
   s.source       = { :git => "https://github.com/dmitrysimkin/DSValidator.git", :tag => "#{s.version}" }
 
   s.source_files  = "Classes", "Sources/**/*.{swift}"
