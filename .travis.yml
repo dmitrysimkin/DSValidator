@@ -1,4 +1,5 @@
 os: osx
 osx_image: xcode12.2
 language: swift
-script: xcodebuild clean build test -project DSValidator.xcodeproj -scheme "DSValidator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script:xcodebuild clean build test -project DSValidator.xcodeproj -scheme "DSValidator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+xcodebuild clean build test -project DSValidator.xcodeproj -scheme "DSValidator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2'
