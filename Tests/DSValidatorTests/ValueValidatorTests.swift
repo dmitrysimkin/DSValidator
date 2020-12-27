@@ -66,6 +66,10 @@ class ValueValidatorTests: XCTestCase {
         let error = validator.validate(value: 3.3)
         XCTAssertEqual(error?.code, .required)
         XCTAssertEqual(error?.localizedDescription, "CreatedAt is required")
+        
+        let errors = DSValidator.validate(value: "SPMIntegrationDSValidator", rule: DS.rule(for: "SPMIntegrationDSValidator").fail(.required))
+        XCTAssertEqual(errors.count, 1)
+        XCTAssertEqual(errors[0].localizedDescription, "SPMIntegrationDSValidator is required")
     }
 
     func testErrorMessageWithoutLocalizedNameShouldStartWithName() {
