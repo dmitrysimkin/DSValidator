@@ -6,9 +6,7 @@
 //  Copyright © 2020 Dzmitry Simkin. All rights reserved.
 //
 
-import UIKit
 import Foundation
-
 
 public protocol SyntaxValueValidator {
     @discardableResult func syntax(_ syntax: DSSyntax) -> ValueValidator
