@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: Mac OS Test
+      run: xcodebuild clean build test -project DSValidator.xcodeproj -scheme "DSValidator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination 'platform=macOS'
+    - name: IOS Simulator Test
+      run: xcodebuild clean build test -project DSValidator.xcodeproj -scheme "DSValidator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2'
