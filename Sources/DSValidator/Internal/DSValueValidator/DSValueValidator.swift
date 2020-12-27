@@ -192,11 +192,18 @@ extension DSValueValidator {
         }
 
         // use default messages
-        let name = localizedName.capitalized
+        let name = localizedName.capitalizingFirstLetter()
         let defaultMessage = defaultMessagesProvider.errorMessage(by: code, for: name)
         return ValidationError(code, message: defaultMessage)
     }
 }
+
+private extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+}
+
 
 private struct Names {
     static let Required = "Required"

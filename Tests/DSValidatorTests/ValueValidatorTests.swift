@@ -43,7 +43,7 @@ class ValueValidatorTests: XCTestCase {
         validator.localizedName(localizedName)
             .emptyTestRule()
         let error = validator.validate(value: "any")
-        XCTAssertTrue(error?.localizedDescription.starts(with: "Localized Validator") ?? false)
+        XCTAssertTrue(error?.localizedDescription.starts(with: "Localized validator") ?? false)
     }
 
     func testNameIsCapitalizedForDefaultErrorMessages() {
@@ -57,7 +57,15 @@ class ValueValidatorTests: XCTestCase {
         validator.fail(.empty)
         error = validator.validate(value: Float(132.32))
         XCTAssertFalse(error?.localizedDescription.starts(with: "total amount") ?? false)
-        XCTAssertTrue(error?.localizedDescription.starts(with: "Total Amount") ?? false)
+        XCTAssertTrue(error?.localizedDescription.starts(with: "Total amount") ?? false)
+    }
+    
+    func testPropertyNameProperlyCapitalizedForCamelCaseProperty() {
+        let validator = DSValueValidator(property: "createdAt")
+        validator.addValidation(named: "Rule1", block: { _ in return .required })
+        let error = validator.validate(value: 3.3)
+        XCTAssertEqual(error?.code, .required)
+        XCTAssertEqual(error?.localizedDescription, "CreatedAt is required")
     }
 
     func testErrorMessageWithoutLocalizedNameShouldStartWithName() {
