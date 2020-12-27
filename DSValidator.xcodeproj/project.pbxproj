@@ -59,6 +59,7 @@
 		127CA19124709F0400375036 /* DSAnyNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17F24709C3F00375036 /* DSAnyNumber.swift */; };
 		127CA19224709F1000375036 /* DSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA17D24709BFD00375036 /* DSDate+Extensions.swift */; };
 		127CA19324709F3000375036 /* Syntax+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CA18524709D1C00375036 /* Syntax+Extensions.swift */; };
+		12814B5D2598A8470030F572 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 12814B5C2598A8470030F572 /* .travis.yml */; };
 		129393A5240987F20002ABF0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A4240987F20002ABF0 /* Utils.swift */; };
 		129393A724099E370002ABF0 /* MockErrorMessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A624099E370002ABF0 /* MockErrorMessagesDelegate.swift */; };
 		129393A9240A739F0002ABF0 /* ValueValidatorMessagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129393A8240A739F0002ABF0 /* ValueValidatorMessagingTests.swift */; };
@@ -146,6 +147,7 @@
 		127CA18524709D1C00375036 /* Syntax+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Extensions.swift"; sourceTree = "<group>"; };
 		127CA18924709DF300375036 /* DSCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCollection.swift; sourceTree = "<group>"; };
 		127CA18B24709E0F00375036 /* DSCollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DSCollection+Extensions.swift"; sourceTree = "<group>"; };
+		12814B5C2598A8470030F572 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
 		129393A4240987F20002ABF0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		129393A624099E370002ABF0 /* MockErrorMessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorMessagesDelegate.swift; sourceTree = "<group>"; };
 		129393A8240A739F0002ABF0 /* ValueValidatorMessagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueValidatorMessagingTests.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				12B3B6AE24755FC10032100C /* Sources */,
 				12B3B6B5247560420032100C /* DSValidator.podspec */,
+				12814B5C2598A8470030F572 /* .travis.yml */,
 				12B3B6B8247560E50032100C /* README.md */,
 				12B3B6A924755FC10032100C /* Tests */,
 				126FBE3B24015117006391CC /* Products */,
@@ -440,6 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12814B5D2598A8470030F572 /* .travis.yml in Resources */,
 				12B3B6BA247560E50032100C /* README.md in Resources */,
 				12B3B6B6247560420032100C /* DSValidator.podspec in Resources */,
 			);
