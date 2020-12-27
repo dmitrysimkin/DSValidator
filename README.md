@@ -1,5 +1,7 @@
-# DSValidator
+# DSValidator 
 Validation
+
+[![Build Status](https://travis-ci.org/dmitrysimkin/DSValidator.svg?branch=master)](https://travis-ci.org/dmitrysimkin/DSValidator)
 
 Features: 
 - bla
