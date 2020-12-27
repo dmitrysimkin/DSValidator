@@ -44,7 +44,7 @@ public final class DSValidator {
                                 scenario: Scenario? = nil,
                                 rules: Rules) -> [ValidationError] { // TODO: Think about return empty
 
-        let validators = rules().sorted(by: { $0.order > $1.order })
+        let rules = rules().sorted(by: { $0.order > $1.order })
 
         let reflection = Reflection(of: model)
         guard reflection.isSupportedType() else {
@@ -54,8 +54,8 @@ public final class DSValidator {
         let properties = reflection.properties()
         var errors: [ValidationError] = []
 
-        for validator in validators {
-            guard properties.contains(validator.property) else {
+        for rule in rules {
+            guard properties.contains(rule.property) else {
                 let error = ValidationError.valueNotFound()
                 if tillFirstError {
                     return [error]
@@ -64,10 +64,10 @@ public final class DSValidator {
                 continue
             }
 
-            let value = reflection.value(withKey: validator.property)
+            let value = reflection.value(withKey: rule.property)
 
-            validator.delegate = delegate
-            let validationErrors = validator.validate(value: value, tillFirstError: tillFirstError, scenario: scenario)
+            rule.delegate = delegate
+            let validationErrors = rule.validate(value: value, tillFirstError: tillFirstError, scenario: scenario)
             errors.append(contentsOf: validationErrors)
         }
 
