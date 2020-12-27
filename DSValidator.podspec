@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DSValidator"
-  s.version      = "0.2.3"
+  s.version      = "0.2.4"
   s.summary      = "Custom models rule based validation"
 
   s.description  = <<-DESC
